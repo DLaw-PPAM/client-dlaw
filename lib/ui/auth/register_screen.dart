@@ -1,5 +1,5 @@
 import 'package:client_dlaw/common/style.dart';
-import 'package:client_dlaw/ui/login_screen.dart';
+import 'package:client_dlaw/ui/auth/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

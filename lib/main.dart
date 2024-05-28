@@ -1,7 +1,7 @@
 import 'package:client_dlaw/common/navigation.dart';
+import 'package:client_dlaw/ui/auth/login_screen.dart';
+import 'package:client_dlaw/ui/auth/register_screen.dart';
 import 'package:client_dlaw/ui/home_page.dart';
-import 'package:client_dlaw/ui/login_screen.dart';
-import 'package:client_dlaw/ui/register_screen.dart';
 import 'package:client_dlaw/ui/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
