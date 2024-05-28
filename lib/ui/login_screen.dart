@@ -1,4 +1,5 @@
 import 'package:client_dlaw/common/style.dart';
+import 'package:client_dlaw/ui/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,12 +12,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenPage extends State<LoginScreen> {
-  @override
+  // @override
   String? username;
   String? password;
 
   void onFilterButtonPressed() {
-    print("search button clicked");
+    Navigator.pushNamed(context, HomePage.routeName);
   }
 
   Widget build(BuildContext context) {
