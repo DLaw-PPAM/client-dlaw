@@ -26,3 +26,38 @@ class Review {
     clientId = json['clientId'];
   }
 }
+
+var reviewList = [
+  Review(
+    id: '1',
+    rating: 4.5,
+    description: 'Great lawyer, very helpful',
+    timestamp: DateTime.now(),
+    lawyerId: '1',
+    clientId: '1',
+  ),
+  Review(
+    id: '2',
+    rating: 3.5,
+    description: 'Good lawyer, but need to improve',
+    timestamp: DateTime.now(),
+    lawyerId: '2',
+    clientId: '2',
+  ),
+  Review(
+    id: '3',
+    rating: 5,
+    description: 'Excellent lawyer, very professional',
+    timestamp: DateTime.now(),
+    lawyerId: '1',
+    clientId: '3',
+  ),
+  Review(
+    id: '4',
+    rating: 4,
+    description: 'Very helpful lawyer, highly recommended',
+    timestamp: DateTime.now(),
+    lawyerId: '2',
+    clientId: '4',
+  ),
+];
