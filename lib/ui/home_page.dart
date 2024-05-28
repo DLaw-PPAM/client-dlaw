@@ -1,6 +1,7 @@
 import 'package:client_dlaw/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = '/home';
@@ -20,8 +21,12 @@ class _HomePageState extends State<HomePage> {
       label: 'Home',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.person),
-      label: 'Profile',
+      icon: Icon(Icons.search),
+      label: 'Search',
+    ),  
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.cases_outlined),
+      label: 'Case',
     ),
   ];
 
@@ -33,7 +38,8 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _listWidget = [
     const Center(child: Text('Home Page')),
-    const Center(child: Text('Profile Page')),
+    const Center(child: Text('Search Page')),
+    const Center(child: Text('Case Page')),
   ];
 
   Widget _buildAndroid(BuildContext context) {
