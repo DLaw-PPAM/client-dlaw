@@ -6,8 +6,7 @@ class Case {
   late String media;
   late String notes;
   late String status;
-  late num consultationFee;
-  late num hourlyFee;
+  late num hour;
   late num additionFee;
   late String lawyerId;
   late String clientId;
@@ -18,8 +17,7 @@ class Case {
     required this.media,
     required this.notes,
     required this.status,
-    required this.consultationFee,
-    required this.hourlyFee,
+    required this.hour,
     required this.additionFee,
     required this.lawyerId,
     required this.clientId,
@@ -31,8 +29,7 @@ class Case {
     media = json['media'];
     notes = json['notes'];
     status = json['status'];
-    consultationFee = json['consultationFee'];
-    hourlyFee = json['hourlyFee'];
+    hour = json['hour'];
     additionFee = json['additionFee'];
     lawyerId = json['lawyerId'];
     clientId = json['clientId'];
