@@ -36,7 +36,7 @@ class Case {
   }
 }
 
-var CaseList = [
+var caseList = [
   Case(
       id: 'CA01',
       subject: 'Divourse Case',
@@ -56,7 +56,7 @@ var CaseList = [
       hour: 0,
       additionFee: 0,
       lawyerId: 'L01',
-      clientId: 'C05'),
+      clientId: 'C04'),
   Case(
       id: 'CA03',
       subject: 'Inheritance Split',
