@@ -55,7 +55,7 @@ var userList = [
   ClientUser(
     id: '2',
     username: 'sandraolga',
-    profilePicture: 'https://www.suara.com/pictures/653x366/2020/03/17/70315-sandra-olga.jpg',
+    profilePicture: 'https://cdn1-production-images-kly.akamaized.net/zO_dRrXfVk7-PJGACoaDovMaHOQ=/1200x1200/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/2244491/original/018017500_1528491342-SANDRA_OLGA_01.JPG',
     email: 'sandro@gmail.com',
     password: '123456',
     fullname: 'Sandra Olga',
@@ -67,7 +67,7 @@ var userList = [
   ClientUser(
     id: '3',
     username: 'Nicholas',
-    profilePicture: 'https://www.suara.com/pictures/653x366/2020/03/17/70315-sandra-olga.jpg',
+    profilePicture: 'https://awsimages.detik.net.id/community/media/visual/2024/04/25/viral-tren-goyang-nasi-padang-begini-asal-usulnya.jpeg?w=800',
     email: 'nik@gmail.com',
     password: '123456',
     fullname: 'Nicholas Saputra',
@@ -79,7 +79,7 @@ var userList = [
   ClientUser(
     id: '4',
     username: 'Abraham',
-    profilePicture: 'https://www.suara.com/pictures/653x366/2020/03/17/70315-sandra-olga.jpg',
+    profilePicture: 'https://yt3.googleusercontent.com/3r90Wmi5NsG6FU4yuWEiZQg8xktURGRcgaed-KB8OokYyiMZWxD0b9JzZv_gv6OXoeFVkvsFndM=s900-c-k-c0x00ffffff-no-rj',
     email: 'abraham@gmail.com',
     password: '123456',
     fullname: 'Abraham Saputra',
