@@ -1,4 +1,3 @@
-
 import 'package:client_dlaw/common/navigation.dart';
 import 'package:client_dlaw/common/style.dart';
 import 'package:client_dlaw/data/api/api_services.dart';
@@ -32,7 +31,7 @@ class _DialogAddReviewState extends State<DialogAddReview> {
     // var errorResponse =
     //     await Provider.of<DetailLawyerProvider>(context, listen: false)
     //         .postReview(
-      
+
     // );
     var errorResponse = null;
     Navigation.back();
@@ -46,7 +45,7 @@ class _DialogAddReviewState extends State<DialogAddReview> {
                 CupertinoDialogAction(
                   child: Text(
                     'Ok',
-                    style: Theme.of(context).textTheme.button,
+                    style: Theme.of(context).textTheme.labelLarge,
                   ),
                   onPressed: () {
                     Navigation.back();
@@ -79,17 +78,27 @@ class _DialogAddReviewState extends State<DialogAddReview> {
             child: TextField(
               controller: nameController,
               textAlignVertical: TextAlignVertical.center,
+              cursorColor: black,
               decoration: InputDecoration(
                 contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-                border: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                enabledBorder: InputBorder.none,
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 9),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide.none,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(color: black),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(color: grey),
+                ),
                 hintText: nameHint,
                 hintStyle: const TextStyle(color: grey),
               ),
               style: TextStyle(
-                color: black, 
+                color: black,
               ),
             ),
           ),
@@ -101,14 +110,24 @@ class _DialogAddReviewState extends State<DialogAddReview> {
             ),
             child: TextField(
               controller: reviewController,
+              cursorColor: black,
               textAlignVertical: TextAlignVertical.top,
               maxLines: 4,
               decoration: InputDecoration(
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-                border: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                enabledBorder: InputBorder.none,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide.none,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(color: black),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(color: grey),
+                ),
                 hintText: reviewHint,
                 hintStyle: const TextStyle(color: grey),
               ),

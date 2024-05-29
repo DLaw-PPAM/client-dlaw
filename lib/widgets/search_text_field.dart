@@ -25,38 +25,35 @@ class _SearchTextFieldState extends State<SearchTextField> {
   final String hint = "Type here..";
 
   Widget _buildAndroid(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: white,
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(
-          color: grey,
-          width: 1,
+    return TextField(
+      readOnly: widget.readOnly,
+      onTap: widget.onTap,
+      cursorColor: black,
+      onChanged: widget.onChanged,
+      textAlignVertical: TextAlignVertical.center,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 9),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: const BorderSide(color: Colors.black),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: const BorderSide(color: Colors.grey),
+        ),
+        hintText: hint,
+        hintStyle: const TextStyle(color: Colors.grey),
+        prefixIcon: const Icon(
+          Icons.search,
+          color: Colors.grey,
         ),
       ),
-      child: TextField(
-        readOnly: widget.readOnly,
-        autofocus: widget.autoFocus,
-        onTap: widget.onTap,
-        onChanged: widget.onChanged,
-        textAlignVertical: TextAlignVertical.center,
-        decoration: InputDecoration(
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 9),
-          border: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          enabledBorder: InputBorder.none,
-          hintText: hint,
-          hintStyle: const TextStyle(color: black),
-          prefixIcon: const Icon(
-            Icons.search,
-            color: black,
-          ),
-        ),
-        style: TextStyle(
-          color: black,
-        ),
+      style: const TextStyle(
+        color: Colors.black,
       ),
     );
   }
@@ -67,25 +64,22 @@ class _SearchTextFieldState extends State<SearchTextField> {
       autofocus: widget.autoFocus,
       onTap: widget.onTap,
       onChanged: widget.onChanged,
-      textAlignVertical: TextAlignVertical.center,
       placeholder: hint,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.0),
-        color: grey,
-        border: Border.all(
-          color: grey,
-          width: 1,
-        ),
-      ),
+      placeholderStyle: const TextStyle(color: Colors.grey),
       prefix: const Padding(
-        padding: EdgeInsets.only(left: 16.0),
+        padding: EdgeInsets.only(left: 8.0),
         child: Icon(
           CupertinoIcons.search,
-          color: black,
+          color: Colors.grey,
         ),
       ),
-      placeholderStyle: const TextStyle(color: black),
+      style: const TextStyle(
+        color: Colors.black,
+      ),
+      decoration: BoxDecoration(
+        color: lightGrey,
+        borderRadius: BorderRadius.circular(15),
+      ),
     );
   }
 
