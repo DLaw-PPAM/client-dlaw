@@ -1,7 +1,8 @@
-import 'package:client_dlaw/ui/components/home_card.dart';
+import 'package:client_dlaw/widgets/home_card.dart';
 import 'package:flutter/material.dart';
-import 'package:client_dlaw/ui/auth/login_screen.dart';
+import 'package:client_dlaw/ui/profile/profile.dart';
 import 'package:client_dlaw/ui/home_page.dart';
+import 'package:client_dlaw/ui/search_page.dart';
 
 class Home extends StatefulWidget {
   static const String routeName = '/home';
@@ -13,15 +14,17 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   // @override
-  String? username;
-  String? password;
 
-  void onFilterButtonPressed() {
-    Navigator.pushNamed(context, LoginScreen.routeName);
+  void onProfileButtonPressed() {
+    Navigator.pushNamed(context, Profile.routeName);
   }
 
-  void onRegisterButtonPressed() {
+  void onNotificationButtonPressed() {
     Navigator.pushNamed(context, HomePage.routeName);
+  }
+
+  void onSearchButtonPressed() {
+    Navigator.pushNamed(context, SearchPage.routeName);
   }
 
   @override
@@ -33,12 +36,12 @@ class _HomeState extends State<Home> {
           actions: [
             IconButton(
                 onPressed: () {
-                  onFilterButtonPressed();
+                  onProfileButtonPressed();
                 },
                 icon: const Icon(Icons.person_2_outlined)),
             IconButton(
               onPressed: () {
-                onFilterButtonPressed();
+                onNotificationButtonPressed();
               },
               icon: const Icon(Icons.notifications_none_outlined),
             )
@@ -93,7 +96,7 @@ class _HomeState extends State<Home> {
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(10.0))),
                                   onPressed: () {
-                                    onFilterButtonPressed();
+                                    onSearchButtonPressed();
                                   },
                                   child: const Text(
                                     "Learn More",

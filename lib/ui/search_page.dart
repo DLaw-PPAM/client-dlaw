@@ -1,7 +1,7 @@
 import 'package:client_dlaw/common/navigation.dart';
 import 'package:client_dlaw/provider/search_lawyer_provider.dart';
 import 'package:client_dlaw/ui/auth/login_screen.dart';
-import 'package:client_dlaw/ui/components/home.dart';
+import 'package:client_dlaw/ui/home/home.dart';
 import 'package:client_dlaw/utils/result_state.dart';
 import 'package:client_dlaw/widgets/card_lawyer.dart';
 import 'package:client_dlaw/widgets/platform_widget.dart';
