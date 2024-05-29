@@ -1,5 +1,7 @@
 import 'package:client_dlaw/common/navigation.dart';
 import 'package:client_dlaw/provider/search_lawyer_provider.dart';
+import 'package:client_dlaw/ui/auth/login_screen.dart';
+import 'package:client_dlaw/ui/components/home.dart';
 import 'package:client_dlaw/utils/result_state.dart';
 import 'package:client_dlaw/widgets/card_lawyer.dart';
 import 'package:client_dlaw/widgets/platform_widget.dart';
@@ -20,6 +22,13 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   var searchQuery = '';
+  void onProfileButtonPressed() {
+    Navigator.pushNamed(context, LoginScreen.routeName);
+  }
+
+  void onNotificationButtonPressed() {
+    Navigator.pushNamed(context, Home.routeName);
+  }
 
   Widget _buildSearchTextField() {
     return Padding(
@@ -45,7 +54,6 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-
   Widget _buildList() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -59,8 +67,7 @@ class _SearchPageState extends State<SearchPage> {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: EdgeInsets.only(top: index == 0 ? 12.0 : 0.0),
-                  child: CardLawyer(
-                      lawyer: state.result.lawyers[index]),
+                  child: CardLawyer(lawyer: state.result.lawyers[index]),
                 );
               },
             );
@@ -86,17 +93,24 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-   Widget _buildAndroid(BuildContext context) {
+  Widget _buildAndroid(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          color: Theme.of(context).primaryColor,
-          onPressed: () => Navigation.back(),
-        ),
-        title: Text(
-          SearchPage.searchTitle,
-          style: Theme.of(context).textTheme.headline6,
-        ),
+        leading: null,
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: () {
+                onProfileButtonPressed();
+              },
+              icon: const Icon(Icons.person_2_outlined)),
+          IconButton(
+            onPressed: () {
+              onNotificationButtonPressed();
+            },
+            icon: const Icon(Icons.notifications_none_outlined),
+          )
+        ],
       ),
       body: SafeArea(
         child: Column(
@@ -112,7 +126,7 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
-    Widget _buildIos(BuildContext context) {
+  Widget _buildIos(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         transitionBetweenRoutes: false,
