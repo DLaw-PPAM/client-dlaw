@@ -1,0 +1,64 @@
+{
+  "error": false,
+  "message": "Success",
+  "lawyers": [
+    {
+      "id": "1",
+      "clientId": "1",
+      "pricePerHour": 100,
+      "rating": 4.5,
+      "specialities": [
+        {
+          "name": "Criminal Law"
+        },
+        {
+          "name": "Civil Law"
+        }
+      ],
+      "user": {
+        "id": "1",
+        "username": "hotmanparis",
+        "profilePicture": "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+        "email": "hotman@hotmail.com",
+        "password": "123456",
+        "fullname": "Hotman Paris",
+        "birthdate": "1960-01-01T00:00:00.000",
+        "phoneNumber": "08123456789",
+        "address": "Jl. Gatot Subroto No. 1",
+        "bio": "Lawyer"
+      }
+    },
+    {
+      "id": "3",
+      "clientId": "2",
+      "pricePerHour": 300,
+      "rating": 4.0,
+      "specialities": [
+        {
+          "name": "Criminal Law"
+        },
+        {
+          "name": "Civil Law"
+        },
+        {
+          "name": "Family Law"
+        },
+        {
+          "name": "Corporate Law"
+        }
+      ],
+      "user": {
+        "id": "2",
+        "username": "jokowi",
+        "profilePicture": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Joko_Widodo_2019_official_portrait.jpg/220px-Joko_Widodo_2019_official_portrait.jpg",
+        "email": "jokowi@ri.co.id",
+        "password": "123456",
+        "fullname": "Joko Widodo",
+        "birthdate": "1961-06-21T00:00:00.000",
+        "phoneNumber": "08123456789",
+        "address": "Jl. Gatot Subroto No. 1",
+        "bio": "President of Indonesia"
+      }
+    }
+  ]
+}

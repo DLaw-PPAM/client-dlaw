@@ -1,0 +1,16 @@
+{
+  "error": false,
+  "message": "Success",
+  "user": {
+    "id": "1",
+    "username": "hotmanparis",
+    "profilePicture": "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+    "email": "hotman@hotmail.com",
+    "password": "123456",
+    "fullname": "Hotman Paris",
+    "birthdate": "1960-01-01T00:00:00.000",
+    "phoneNumber": "08123456789",
+    "address": "Jl. Gatot Subroto No. 1",
+    "bio": "Lawyer"
+  }
+}

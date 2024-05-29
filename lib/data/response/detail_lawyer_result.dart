@@ -3,7 +3,7 @@ part of 'responses.dart';
 class DetailLawyerResult {
   bool error;
   String message;
-  LawyerUser lawyer;
+  DetailLawyerResult lawyer;
 
   DetailLawyerResult({
     required this.error,
@@ -15,7 +15,7 @@ class DetailLawyerResult {
     return DetailLawyerResult(
       error: json['error'],
       message: json['message'],
-      lawyer: LawyerUser.fromJson(json['lawyer']),
+      lawyer: DetailLawyerResult.fromJson(json['lawyer']),
     );
   }
 }

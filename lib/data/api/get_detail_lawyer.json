@@ -1,0 +1,64 @@
+{
+  "error": false,
+  "message": "Success",
+  "lawyer": {
+    "id": "1",
+    "clientId": "1",
+    "pricePerHour": 100,
+    "rating": 4.5,
+    "specialities": [
+      {
+        "name": "Criminal Law"
+      },
+      {
+        "name": "Family Law"
+      }
+    ],
+    "user": {
+      "id": "1",
+      "username": "hotmanparis",
+      "profilePicture": "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+      "email": "hotman@hotmail.com",
+      "password": "123456",
+      "fullname": "Hotman Paris",
+      "birthdate": "1960-01-01T00:00:00.000",
+      "phoneNumber": "08123456789",
+      "address": "Jl. Gatot Subroto No. 1",
+      "bio": "Lawyer"
+    },
+    "reviews": [
+      {
+        "id": "1",
+        "rating": 4.5,
+        "description": "Great lawyer, very helpful",
+        "timestamp": "2024-05-28T00:00:00.000Z",
+        "lawyerId": "1",
+        "clientId": "1"
+      },
+      {
+        "id": "2",
+        "rating": 3.5,
+        "description": "Good lawyer, but need to improve",
+        "timestamp": "2024-05-28T00:00:00.000Z",
+        "lawyerId": "2",
+        "clientId": "2"
+      },
+      {
+        "id": "3",
+        "rating": 5,
+        "description": "Excellent lawyer, very professional",
+        "timestamp": "2024-05-28T00:00:00.000Z",
+        "lawyerId": "1",
+        "clientId": "3"
+      },
+      {
+        "id": "4",
+        "rating": 4,
+        "description": "Very helpful lawyer, highly recommended",
+        "timestamp": "2024-05-28T00:00:00.000Z",
+        "lawyerId": "2",
+        "clientId": "4"
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "error": false,
+  "message": "Success",
+  "case": {
+    "id": "1",
+    "subject": "Divorce",
+    "media": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+    "notes": "Need help with divorce process",
+    "status": "On Going",
+    "hour": 2,
+    "additionFee": 0,
+    "lawyerId": "1",
+    "clientId": "1"
+  }
+}
