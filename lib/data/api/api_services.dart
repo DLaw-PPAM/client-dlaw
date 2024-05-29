@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:client_dlaw/data/response/responses.dart';
 import 'package:http/http.dart' show Client;
 
@@ -22,7 +21,67 @@ class ApiServices {
   //     throw Exception('Failed to load lawyers');
   //   }
   // }
-
+  Future<LawyersResult> getLawyers() async {
+    try {
+      final responseBody = {
+        "error": false,
+        "message": "Success",
+        "lawyers": [
+          {
+            "id": "1",
+            "clientId": "1",
+            "pricePerHour": 100,
+            "rating": 4.5,
+            "specialities": [
+              {"name": "Criminal Law"},
+              {"name": "Civil Law"}
+            ],
+            "user": {
+              "id": "1",
+              "username": "hotmanparis",
+              "profilePicture":
+                  "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+              "email": "hotman@hotmail.com",
+              "password": "123456",
+              "fullname": "Hotman Paris",
+              "birthdate": "1960-01-01T00:00:00.000",
+              "phoneNumber": "08123456789",
+              "address": "Jl. Gatot Subroto No. 1",
+              "bio": "Lawyer"
+            }
+          },
+          {
+            "id": "3",
+            "clientId": "2",
+            "pricePerHour": 300,
+            "rating": 4.0,
+            "specialities": [
+              {"name": "Criminal Law"},
+              {"name": "Civil Law"},
+              {"name": "Family Law"},
+              {"name": "Corporate Law"}
+            ],
+            "user": {
+              "id": "2",
+              "username": "jokowi",
+              "profilePicture":
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Joko_Widodo_2019_official_portrait.jpg/220px-Joko_Widodo_2019_official_portrait.jpg",
+              "email": "jokowi@ri.co.id",
+              "password": "123456",
+              "fullname": "Joko Widodo",
+              "birthdate": "1961-06-21T00:00:00.000",
+              "phoneNumber": "08123456789",
+              "address": "Jl. Gatot Subroto No. 1",
+              "bio": "President of Indonesia"
+            }
+          }
+        ]
+      };
+      return LawyersResult.fromJson(responseBody);
+    } catch (e) {
+      throw Exception('An error occurred: $e');
+    }
+  }
 
   // Future<DetailLawyerResult> getDetailLawyer(int lawyerId) async {
   //   final response =
@@ -33,6 +92,74 @@ class ApiServices {
   //     throw Exception('Failed to load detail lawyer');
   //   }
   // }
+  Future<DetailLawyerResult> getDetailLawyer(int lawyerId) async {
+    try {
+      final responseBody = {
+        "error": false,
+        "message": "Success",
+        "lawyer": {
+          "id": "1",
+          "clientId": "1",
+          "pricePerHour": 100,
+          "rating": 4.5,
+          "specialities": [
+            {"name": "Criminal Law"},
+            {"name": "Family Law"}
+          ],
+          "user": {
+            "id": "1",
+            "username": "hotmanparis",
+            "profilePicture":
+                "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+            "email": "hotman@hotmail.com",
+            "password": "123456",
+            "fullname": "Hotman Paris",
+            "birthdate": "1960-01-01T00:00:00.000",
+            "phoneNumber": "08123456789",
+            "address": "Jl. Gatot Subroto No. 1",
+            "bio": "Lawyer"
+          },
+          "reviews": [
+            {
+              "id": "1",
+              "rating": 4.5,
+              "description": "Great lawyer, very helpful",
+              "timestamp": "2024-05-28T00:00:00.000Z",
+              "lawyerId": "1",
+              "clientId": "1"
+            },
+            {
+              "id": "2",
+              "rating": 3.5,
+              "description": "Good lawyer, but need to improve",
+              "timestamp": "2024-05-28T00:00:00.000Z",
+              "lawyerId": "2",
+              "clientId": "2"
+            },
+            {
+              "id": "3",
+              "rating": 5,
+              "description": "Excellent lawyer, very professional",
+              "timestamp": "2024-05-28T00:00:00.000Z",
+              "lawyerId": "1",
+              "clientId": "3"
+            },
+            {
+              "id": "4",
+              "rating": 4,
+              "description": "Very helpful lawyer, highly recommended",
+              "timestamp": "2024-05-28T00:00:00.000Z",
+              "lawyerId": "2",
+              "clientId": "4"
+            }
+          ]
+        }
+      };
+      return DetailLawyerResult.fromJson(responseBody);
+    } catch (e) {
+      throw Exception('An error occurred: $e');
+    }
+  }
 
   // Future<DetailUserResult> getDetailUser(int userId) async {
   //   final response =
@@ -43,6 +170,30 @@ class ApiServices {
   //     throw Exception('Failed to load detail user');
   //   }
   // }
+  Future<DetailUserResult> getDetailUser(int userId) async {
+    try {
+      final responseBody = {
+        "error": false,
+        "message": "Success",
+        "user": {
+          "id": "1",
+          "username": "hotmanparis",
+          "profilePicture":
+              "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+          "email": "hotman@hotmail.com",
+          "password": "123456",
+          "fullname": "Hotman Paris",
+          "birthdate": "1960-01-01T00:00:00.000",
+          "phoneNumber": "08123456789",
+          "address": "Jl. Gatot Subroto No. 1",
+          "bio": "Lawyer"
+        }
+      };
+      return DetailUserResult.fromJson(responseBody);
+    } catch (e) {
+      throw Exception('An error occurred: $e');
+    }
+  }
 
   // Future<CasesResult> getCasesByUserId(int userId) async {
   //   final response = await client!.get(Uri.parse("$baseUrl/cases/$userId"));
@@ -52,6 +203,63 @@ class ApiServices {
   //     throw Exception('Failed to load cases');
   //   }
   // }
+  Future<CasesResult> getCasesByUserId(int userId) async {
+    try {
+      final responseBody = {
+        "error": false,
+        "message": "Success",
+        "cases": [
+          {
+            "id": "1",
+            "subject": "Divorce",
+            "media": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+            "notes": "Need help with divorce process",
+            "status": "On Going",
+            "hour": 2,
+            "additionFee": 0,
+            "lawyerId": "1",
+            "clientId": "1"
+          },
+          {
+            "id": "2",
+            "subject": "Criminal",
+            "media": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+            "notes": "Need help with criminal case",
+            "status": "On Going",
+            "hour": 3,
+            "additionFee": 0,
+            "lawyerId": "1",
+            "clientId": "2"
+          },
+          {
+            "id": "3",
+            "subject": "Business",
+            "media": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+            "notes": "Need help with business law",
+            "status": "On Going",
+            "hour": 4,
+            "additionFee": 0,
+            "lawyerId": "2",
+            "clientId": "3"
+          },
+          {
+            "id": "4",
+            "subject": "Family",
+            "media": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+            "notes": "Need help with family law",
+            "status": "On Going",
+            "hour": 5,
+            "additionFee": 0,
+            "lawyerId": "2",
+            "clientId": "4"
+          }
+        ]
+      };
+      return CasesResult.fromJson(responseBody);
+    } catch (e) {
+      throw Exception('An error occurred: $e');
+    }
+  }
 
   // Future<DetailCaseResult> getDetailCase(int caseId) async {
   //   final response =
@@ -62,6 +270,28 @@ class ApiServices {
   //     throw Exception('Failed to load detail case');
   //   }
   // }
+  Future<DetailCaseResult> getDetailCase(int caseId) async {
+    try {
+      final responseBody = {
+        "error": false,
+        "message": "Success",
+        "case": {
+          "id": "1",
+          "subject": "Divorce",
+          "media": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+          "notes": "Need help with divorce process",
+          "status": "On Going",
+          "hour": 2,
+          "additionFee": 0,
+          "lawyerId": "1",
+          "clientId": "1"
+        }
+      };
+      return DetailCaseResult.fromJson(responseBody);
+    } catch (e) {
+      throw Exception('An error occurred: $e');
+    }
+  }
 
   // Future<SearchLawyersResult> getLawyersByKeyword(String keyword) async {
   //   final response =
@@ -84,12 +314,8 @@ class ApiServices {
             "pricePerHour": 100,
             "rating": 4.5,
             "specialities": [
-              {
-                "name": "Criminal Law"
-              },
-              {
-                "name": "Civil Law"
-              },
+              {"name": "Criminal Law"},
+              {"name": "Civil Law"},
             ],
             "user": {
               "id": "1",
@@ -111,18 +337,10 @@ class ApiServices {
             "pricePerHour": 300,
             "rating": 4.0,
             "specialities": [
-              {
-                "name": "Criminal Law"
-              },
-              {
-                "name": "Civil Law"
-              },
-              {
-                "name": "Family Law"
-              },
-              {
-                "name": "Corporate Law"
-              },
+              {"name": "Criminal Law"},
+              {"name": "Civil Law"},
+              {"name": "Family Law"},
+              {"name": "Corporate Law"},
             ],
             "user": {
               "id": "2",
@@ -146,7 +364,6 @@ class ApiServices {
     }
   }
 
-
   // Future<ReviewResult> getReviewsByLawyerId(int caseId) async {
   //   final response = await client!.get(Uri.parse("$baseUrl/reviews/$caseId"));
   //   if (response.statusCode == 200) {
@@ -155,9 +372,53 @@ class ApiServices {
   //     throw Exception('Failed to load reviews');
   //   }
   // }
+  Future<ReviewsResult> getReviewsByLawyerId(int caseId) async {
+    try {
+      final responseBody = {
+        "error": false,
+        "message": "Success",
+        "reviews": [
+          {
+            "id": "1",
+            "rating": 4.5,
+            "description": "Great lawyer, very helpful",
+            "timestamp": "2024-05-28T00:00:00.000Z",
+            "lawyerId": "1",
+            "clientId": "1"
+          },
+          {
+            "id": "2",
+            "rating": 3.5,
+            "description": "Good lawyer, but need to improve",
+            "timestamp": "2024-05-28T00:00:00.000Z",
+            "lawyerId": "2",
+            "clientId": "2"
+          },
+          {
+            "id": "3",
+            "rating": 5,
+            "description": "Excellent lawyer, very professional",
+            "timestamp": "2024-05-28T00:00:00.000Z",
+            "lawyerId": "1",
+            "clientId": "3"
+          },
+          {
+            "id": "4",
+            "rating": 4,
+            "description": "Very helpful lawyer, highly recommended",
+            "timestamp": "2024-05-28T00:00:00.000Z",
+            "lawyerId": "2",
+            "clientId": "4"
+          }
+        ]
+      };
+      return ReviewsResult.fromJson(responseBody);
+    } catch (e) {
+      throw Exception('An error occurred: $e');
+    }
+  }
 
-
-  Future<ReviewResult> postReview(
+  Future<ReviewsResult> postReview(
     // time by default is current time
     int lawyerId,
     int userId,
@@ -176,13 +437,13 @@ class ApiServices {
       ),
     );
     if (response.statusCode == 200) {
-      return ReviewResult.fromJson(json.decode(response.body));
+      return ReviewsResult.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to post review');
     }
   }
 
-  Future<ReviewResult> postCase(
+  Future<ReviewsResult> postCase(
     // status by default is "pending"
     int lawyerId,
     int userId,
@@ -209,13 +470,13 @@ class ApiServices {
       ),
     );
     if (response.statusCode == 200) {
-      return ReviewResult.fromJson(json.decode(response.body));
+      return ReviewsResult.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to post case');
     }
   }
 
-  Future<ReviewResult> updateCaseById(
+  Future<ReviewsResult> updateCaseById(
     // status by default is "pending"
     int caseId,
     String subject,
@@ -239,13 +500,13 @@ class ApiServices {
       ),
     );
     if (response.statusCode == 200) {
-      return ReviewResult.fromJson(json.decode(response.body));
+      return ReviewsResult.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to update case');
     }
   }
 
-  Future<ReviewResult> updateUserById(
+  Future<ReviewsResult> updateUserById(
     int clientId,
     String username,
     String profilePicture,
@@ -274,7 +535,7 @@ class ApiServices {
       ),
     );
     if (response.statusCode == 200) {
-      return ReviewResult.fromJson(json.decode(response.body));
+      return ReviewsResult.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to update user');
     }
