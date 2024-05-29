@@ -1,4 +1,5 @@
 import 'package:client_dlaw/ui/search_page.dart';
+import 'package:client_dlaw/ui/components/home.dart';
 import 'package:client_dlaw/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
     const BottomNavigationBarItem(
       icon: Icon(Icons.search),
       label: 'Search',
-    ),  
+    ),
     const BottomNavigationBarItem(
       icon: Icon(Icons.cases_outlined),
       label: 'Case',
@@ -38,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   final List<Widget> _listWidget = [
-    const Center(child: Text('Home Page')),
+    const Home(),
     const SearchPage(),
     const Center(child: Text('Case Page')),
   ];

@@ -6,6 +6,7 @@ class LawyerUser {
   late num pricePerHour;
   late double rating;
   late List<Specialities>? specialities;
+  late List<Review>? reviews;
   late User user;
 
   LawyerUser({
@@ -14,6 +15,7 @@ class LawyerUser {
     required this.pricePerHour,
     required this.rating,
     required this.specialities,
+    required this.reviews,
     required this.user,
   });
 
@@ -24,6 +26,9 @@ class LawyerUser {
     rating = json['rating'];
     specialities = json['specialities']
         .map<Specialities>((category) => Specialities.fromJson(category))
+        .toList();
+    reviews = json['reviews']
+        .map<Review>((review) => Review.fromJson(review))
         .toList();
     user = User.fromJson(json['user']);
   }

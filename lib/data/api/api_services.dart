@@ -128,7 +128,8 @@ class ApiServices {
               "description": "Great lawyer, very helpful",
               "timestamp": "2024-05-28T00:00:00.000Z",
               "lawyerId": "1",
-              "clientId": "1"
+              "clientId": "1",
+              "clientName": "John Doe"
             },
             {
               "id": "2",
@@ -136,7 +137,8 @@ class ApiServices {
               "description": "Good lawyer, but need to improve",
               "timestamp": "2024-05-28T00:00:00.000Z",
               "lawyerId": "2",
-              "clientId": "2"
+              "clientId": "2",
+              "clientName": "John Doe"
             },
             {
               "id": "3",
@@ -144,7 +146,8 @@ class ApiServices {
               "description": "Excellent lawyer, very professional",
               "timestamp": "2024-05-28T00:00:00.000Z",
               "lawyerId": "1",
-              "clientId": "3"
+              "clientId": "3",
+              "clientName": "John Doe"
             },
             {
               "id": "4",
@@ -152,7 +155,8 @@ class ApiServices {
               "description": "Very helpful lawyer, highly recommended",
               "timestamp": "2024-05-28T00:00:00.000Z",
               "lawyerId": "2",
-              "clientId": "4"
+              "clientId": "4",
+              "clientName": "John Doe"
             }
           ]
         }
@@ -320,6 +324,44 @@ class ApiServices {
               {"name": "Criminal Law"},
               {"name": "Civil Law"},
             ],
+            "reviews": [
+              {
+                "id": "1",
+                "rating": 4.5,
+                "description": "Great lawyer, very helpful",
+                "timestamp": "2024-05-28T00:00:00.000Z",
+                "lawyerId": "1",
+                "clientId": "1",
+                "clientName": "John Doe"
+              },
+              {
+                "id": "2",
+                "rating": 3.5,
+                "description": "Good lawyer, but need to improve",
+                "timestamp": "2024-05-28T00:00:00.000Z",
+                "lawyerId": "2",
+                "clientId": "2",
+                "clientName": "John Doe"
+              },
+              {
+                "id": "3",
+                "rating": 5,
+                "description": "Excellent lawyer, very professional",
+                "timestamp": "2024-05-28T00:00:00.000Z",
+                "lawyerId": "1",
+                "clientId": "3",
+                "clientName": "John Doe"
+              },
+              {
+                "id": "4",
+                "rating": 4,
+                "description": "Very helpful lawyer, highly recommended",
+                "timestamp": "2024-05-28T00:00:00.000Z",
+                "lawyerId": "2",
+                "clientId": "4",
+                "clientName": "John Doe"
+              }
+            ],
             "user": {
               "id": "1",
               "username": "hotmanparis",
@@ -345,6 +387,44 @@ class ApiServices {
               {"name": "Civil Law"},
               {"name": "Family Law"},
               {"name": "Corporate Law"},
+            ],
+            "reviews": [
+              {
+                "id": "1",
+                "rating": 4.5,
+                "description": "Great lawyer, very helpful",
+                "timestamp": "2024-05-28T00:00:00.000Z",
+                "lawyerId": "1",
+                "clientId": "1",
+                "clientName": "John Doe"
+              },
+              {
+                "id": "2",
+                "rating": 3.5,
+                "description": "Good lawyer, but need to improve",
+                "timestamp": "2024-05-28T00:00:00.000Z",
+                "lawyerId": "2",
+                "clientId": "2",
+                "clientName": "John Doe"
+              },
+              {
+                "id": "3",
+                "rating": 5,
+                "description": "Excellent lawyer, very professional",
+                "timestamp": "2024-05-28T00:00:00.000Z",
+                "lawyerId": "1",
+                "clientId": "3",
+                "clientName": "John Doe"
+              },
+              {
+                "id": "4",
+                "rating": 4,
+                "description": "Very helpful lawyer, highly recommended",
+                "timestamp": "2024-05-28T00:00:00.000Z",
+                "lawyerId": "2",
+                "clientId": "4",
+                "clientName": "John Doe"
+              }
             ],
             "user": {
               "id": "2",
@@ -388,7 +468,8 @@ class ApiServices {
             "description": "Great lawyer, very helpful",
             "timestamp": "2024-05-28T00:00:00.000Z",
             "lawyerId": "1",
-            "clientId": "1"
+            "clientId": "1",
+            "clientName": "John Doe"
           },
           {
             "id": "2",
@@ -396,7 +477,8 @@ class ApiServices {
             "description": "Good lawyer, but need to improve",
             "timestamp": "2024-05-28T00:00:00.000Z",
             "lawyerId": "2",
-            "clientId": "2"
+            "clientId": "2",
+            "clientName": "Jane Doe"
           },
           {
             "id": "3",
@@ -404,7 +486,8 @@ class ApiServices {
             "description": "Excellent lawyer, very professional",
             "timestamp": "2024-05-28T00:00:00.000Z",
             "lawyerId": "1",
-            "clientId": "3"
+            "clientId": "3",
+            "clientName": "John Doe"
           },
           {
             "id": "4",
@@ -412,7 +495,8 @@ class ApiServices {
             "description": "Very helpful lawyer, highly recommended",
             "timestamp": "2024-05-28T00:00:00.000Z",
             "lawyerId": "2",
-            "clientId": "4"
+            "clientId": "4",
+            "clientName": "Jane Doe"
           }
         ]
       };
@@ -422,13 +506,12 @@ class ApiServices {
     }
   }
 
-  Future<ReviewsResult> postReview(
-    // time by default is current time
-    int lawyerId,
-    int userId,
-    double rating,
-    String description,
-  ) async {
+  Future<ReviewsResult> postReview({
+    required lawyerId,
+    required userId,
+    required double rating,
+    required String description,
+  }) async {
     final response = await client!.post(
       Uri.parse("$baseUrl/reviews"),
       body: jsonEncode(

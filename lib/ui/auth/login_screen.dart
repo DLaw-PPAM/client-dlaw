@@ -1,7 +1,9 @@
 import 'package:client_dlaw/common/style.dart';
+import 'package:client_dlaw/ui/auth/register_screen.dart';
 import 'package:client_dlaw/ui/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = '/login';
@@ -18,6 +20,10 @@ class _LoginScreenPage extends State<LoginScreen> {
 
   void onFilterButtonPressed() {
     Navigator.pushNamed(context, HomePage.routeName);
+  }
+
+  void onRegisterButtonPressed() {
+    Navigator.pushNamed(context, RegisterScreen.routeName);
   }
 
   Widget build(BuildContext context) {
@@ -87,17 +93,33 @@ class _LoginScreenPage extends State<LoginScreen> {
                             },
                           ),
                         )),
+                    TextButton(
+                        onPressed: () {
+                          onRegisterButtonPressed();
+                        },
+                        child: RichText(
+                          text: const TextSpan(
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.white),
+                              children: <TextSpan>[
+                                TextSpan(text: "Dont have an account? "),
+                                TextSpan(
+                                    text: "Register",
+                                    style: TextStyle(color: Colors.yellow))
+                              ]),
+                        )),
                     SizedBox(
-                        width: 350,
-                        height: 60,
-                        child: SizedBox(
+                        width: 440,
+                        child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 50),
                             child: FloatingActionButton(
-                          backgroundColor: const Color(0xFFC67C4E),
-                          onPressed: () {
-                            onFilterButtonPressed();
-                          },
-                          child: Text("Login"),
-                        )))
+                              backgroundColor: Colors.yellow,
+                              onPressed: () {
+                                onFilterButtonPressed();
+                              },
+                              child: Text("Login"),
+                            )))
                   ])),
             )));
   }

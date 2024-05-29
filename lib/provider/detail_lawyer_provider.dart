@@ -10,7 +10,7 @@ class DetailLawyerProvider extends ChangeNotifier {
   final String id;
 
   DetailLawyerProvider({required this.apiServices, required this.id}) {
-    _fetchDetailRestaurant(id);
+    _fetchDetailLawyer(id);
   }
 
   late DetailLawyerResult _detailRestaurantResult;
@@ -23,7 +23,7 @@ class DetailLawyerProvider extends ChangeNotifier {
 
   ResultState get state => _state;
 
-  Future<dynamic> _fetchDetailRestaurant(id) async {
+  Future<dynamic> _fetchDetailLawyer(id) async {
     try {
       _state = ResultState.loading;
       notifyListeners();
@@ -41,6 +41,60 @@ class DetailLawyerProvider extends ChangeNotifier {
       _state = ResultState.error;
       notifyListeners();
       return _message = 'No Connection';
+    } catch (e) {
+      _state = ResultState.error;
+      notifyListeners();
+      return _message = e.toString();
+    }
+  }
+
+  Future<dynamic> _fetchReviewsByLawyerId(caseId) async {
+    try {
+      _state = ResultState.loading;
+      notifyListeners();
+      final response = await apiServices.getReviewsByLawyerId(caseId);
+      if (response.error) {
+        _state = ResultState.noData;
+        notifyListeners();
+        return _message = 'Empty Data';
+      } else {
+        _state = ResultState.hasData;
+        notifyListeners();
+        return _message = response.message;
+      }
+    } on SocketException {
+      _state = ResultState.error;
+      notifyListeners();
+      return _message = 'No Connection';
+    } catch (e) {
+      _state = ResultState.error;
+      notifyListeners();
+      return _message = e.toString();
+    }
+  }
+
+  Future<dynamic> postReview({
+    required int lawyerId,
+    required int userId,
+    required double rating,
+    required String description,
+  }) async {
+    try {
+      final response = await apiServices.postReview(
+        lawyerId: lawyerId,
+        userId: userId,
+        rating: rating,
+        description: description,
+      );
+      if (response.error) {
+        _state = ResultState.noData;
+        notifyListeners();
+        return _message = 'Empty Data';
+      } else {
+        _state = ResultState.hasData;
+        notifyListeners();
+        return _message = response.message;
+      }
     } catch (e) {
       _state = ResultState.error;
       notifyListeners();

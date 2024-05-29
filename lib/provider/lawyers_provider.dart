@@ -9,7 +9,7 @@ class LawyersProvider extends ChangeNotifier {
   final ApiServices apiService;
 
   LawyersProvider({required this.apiService}) {
-    _fetchAllArticle();
+    _fetchAllLawyers();
   }
 
   late LawyersResult _articlesResult;
@@ -22,7 +22,7 @@ class LawyersProvider extends ChangeNotifier {
 
   ResultState get state => _state;
 
-  Future<dynamic> _fetchAllArticle() async {
+  Future<dynamic> _fetchAllLawyers() async {
     try {
       _state = ResultState.loading;
       notifyListeners();

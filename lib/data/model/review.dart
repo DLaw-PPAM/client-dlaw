@@ -7,6 +7,7 @@ class Review {
   late DateTime timestamp;
   late String lawyerId;
   late String clientId;
+  late String clientName;
 
   Review({
     required this.id,
@@ -15,6 +16,7 @@ class Review {
     required this.timestamp,
     required this.lawyerId,
     required this.clientId,
+    required this.clientName,
   });
 
   Review.fromJson(Map<String, dynamic> json) {
@@ -24,6 +26,7 @@ class Review {
     timestamp = DateTime.parse(json['timestamp']);
     lawyerId = json['lawyerId'];
     clientId = json['clientId'];
+    clientName = json['clientName'];
   }
 }
 

@@ -3,6 +3,8 @@ import 'package:client_dlaw/data/api/api_services.dart';
 import 'package:client_dlaw/data/model/models.dart';
 import 'package:client_dlaw/provider/detail_lawyer_provider.dart';
 import 'package:client_dlaw/utils/result_state.dart';
+import 'package:client_dlaw/widgets/item_review.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -43,31 +45,27 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
           background: Hero(
             tag: widget.lawyer.user.id,
             child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(16.0),
-                  bottomRight: Radius.circular(16.0),
-                ),
                 child: Image.network(
-                  widget.lawyer.user.profilePicture ?? '',
-                  fit: BoxFit.cover,
-                  loadingBuilder: (_, child, loadingProgress) {
-                    if (loadingProgress == null) {
-                      return child;
-                    }
-                    return const Center(
-                      child: CircularProgressIndicator(
-                        color: grey,
-                      ),
-                    );
-                  },
-                  errorBuilder: (_, __, ___) {
-                    return const Icon(
-                      Icons.broken_image,
-                      color: grey,
-                      size: 100,
-                    );
-                  },
-                )),
+              widget.lawyer.user.profilePicture ?? '',
+              fit: BoxFit.cover,
+              loadingBuilder: (_, child, loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                }
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: grey,
+                  ),
+                );
+              },
+              errorBuilder: (_, __, ___) {
+                return const Icon(
+                  Icons.broken_image,
+                  color: grey,
+                  size: 100,
+                );
+              },
+            )),
           ),
         ),
       ),
@@ -99,20 +97,13 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
                       color: Colors.blue,
                     ),
                     const SizedBox(width: 4),
-                    Text(
-                      '${lawyer.user.address ?? ''}, ${lawyer.user.address ?? ''}',
+                    Expanded(
+                      child: Text(
+                        '${lawyer.user.address ?? ''}, ${lawyer.user.address ?? ''}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(lawyer.rating.toString()),
                   ],
                 ),
                 const SizedBox(height: 8),
@@ -124,6 +115,17 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
                     ),
                     const SizedBox(width: 4),
                     Text(lawyer.pricePerHour.toString() + ' dollar/hour')
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(lawyer.rating.toString()),
                   ],
                 ),
                 Container(
@@ -170,11 +172,28 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
                       side: BorderSide(
                         width: 1,
                         strokeAlign: BorderSide.strokeAlignCenter,
-                        color: lightGrey,
+                        color: grey,
                       ),
                     ),
                   ),
                 ),
+                Text(
+                  'Reviews',
+                  style: textTheme.titleLarge,
+                ),
+                const SizedBox(height: 8),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Lihat Review',
+                    style: TextStyle(
+                      color: backgroundColor1,
+                      fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
+                if (lawyer.reviews != null) _buildListReview(lawyer.reviews!),
                 const SizedBox(
                   height: 300,
                 ),
@@ -183,6 +202,27 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildListReview(List<Review> reviews) {
+    return Container(
+      child: reviews.isNotEmpty
+          ? SizedBox(
+              height: 110,
+              child: ListView.builder(
+                itemCount: reviews.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                  child: ItemReview(review: reviews[index]),
+                ),
+              ),
+            )
+          : const Padding(
+              padding: EdgeInsets.only(left: 16.0),
+              child: Text('No reviews yet'),
+            ),
     );
   }
 

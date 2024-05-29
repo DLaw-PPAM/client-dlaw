@@ -92,12 +92,16 @@ class CardLawyer extends StatelessWidget {
                           size: 16,
                         ),
                         const SizedBox(width: 4),
-                        Text(
-                          lawyer.user.address ?? '',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    color: const Color(0xFF616161),
-                                  ),
+                        Expanded(
+                          child: Text(
+                            lawyer.user.address ?? '',
+                            style:
+                                Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                      color: const Color(0xFF616161),
+                                    ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ],
                     ),
