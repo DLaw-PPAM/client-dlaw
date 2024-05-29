@@ -20,7 +20,7 @@ class HomeCard extends StatelessWidget {
                     width: 150,
                     height: 150,
                     child: Image.asset(
-                      "/images/lawy.png",
+                      "assets/images/lawy.png",
                       fit: BoxFit.cover,
                     ),
                   ),
