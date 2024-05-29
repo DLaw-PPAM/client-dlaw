@@ -47,10 +47,10 @@ class _HomeState extends State<Home> {
             )
           ],
         ),
-        body: Padding(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 0),
-            child: ListView(children: <Widget>[
-              Column(
+        body: ListView(children: <Widget>[
+          Padding(
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 0),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const Padding(
@@ -61,7 +61,7 @@ class _HomeState extends State<Home> {
                       )),
                   Stack(children: <Widget>[
                     Image.asset(
-                      "images/back-home.png",
+                      "assets/images/back-home.png",
                       width: 800,
                       height: 150,
                       fit: BoxFit.cover,
@@ -161,7 +161,7 @@ class _HomeState extends State<Home> {
                             ],
                           )))
                 ],
-              )
-            ])));
+              ))
+        ]));
   }
 }
