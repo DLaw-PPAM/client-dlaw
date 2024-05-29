@@ -1,5 +1,4 @@
 import 'package:client_dlaw/ui/search_page.dart';
-import 'package:client_dlaw/ui/home/home.dart';
 import 'package:client_dlaw/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

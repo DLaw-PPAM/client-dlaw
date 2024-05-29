@@ -1,7 +1,5 @@
-import 'package:client_dlaw/widgets/home_card.dart';
 import 'package:flutter/material.dart';
 import 'package:client_dlaw/ui/auth/login_screen.dart';
-import 'package:client_dlaw/ui/home_page.dart';
 import 'package:flutter/widgets.dart';
 
 class Profile extends StatefulWidget {
