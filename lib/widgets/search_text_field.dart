@@ -1,4 +1,3 @@
-
 import 'package:client_dlaw/common/style.dart';
 import 'package:client_dlaw/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,10 +28,10 @@ class _SearchTextFieldState extends State<SearchTextField> {
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        color: grey,
+        color: white,
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
-          color: Theme.of(context).primaryColor,
+          color: grey,
           width: 1,
         ),
       ),
@@ -56,7 +55,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
           ),
         ),
         style: TextStyle(
-          color: Theme.of(context).primaryColor,
+          color: black,
         ),
       ),
     );
@@ -75,7 +74,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
         borderRadius: BorderRadius.circular(16.0),
         color: grey,
         border: Border.all(
-          color: Theme.of(context).primaryColor,
+          color: grey,
           width: 1,
         ),
       ),
