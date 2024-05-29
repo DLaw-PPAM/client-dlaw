@@ -75,7 +75,7 @@ final TextTheme textTheme = TextTheme(
 ThemeData primaryTheme = ThemeData(
   colorScheme: ThemeData.light().colorScheme.copyWith(
         primary: Colors.yellow,
-        onPrimary: black,
+        onPrimary: Colors.blue,
         secondary: backgroundColor1,
         onSecondary: Colors.white,
       ),
