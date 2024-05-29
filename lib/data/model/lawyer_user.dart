@@ -5,7 +5,7 @@ class LawyerUser {
   late String clientId;
   late num pricePerHour;
   late double rating;
-  late List<Specialities> specialities;
+  late List<Specialities>? specialities;
   late User user;
 
   LawyerUser({

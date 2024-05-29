@@ -3,14 +3,14 @@ part of 'models.dart';
 class User {
   late String id;
   late String username;
-  late String profilePicture;
+  late String? profilePicture;
   late String email;
   late String password;
   late String fullname;
-  late DateTime birthdate;
-  late String phoneNumber;
-  late String address;
-  late String bio;
+  late DateTime? birthdate;
+  late String? phoneNumber;
+  late String? address;
+  late String? bio;
 
   User({
     required this.id,

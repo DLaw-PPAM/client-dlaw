@@ -95,7 +95,10 @@ class _SearchPageState extends State<SearchPage> {
         ),
         title: Text(
           SearchPage.searchTitle,
-          style: Theme.of(context).textTheme.headline6,
+          style: 
+          Theme.of(context).textTheme.titleLarge!.copyWith(
+            color: Theme.of(context).secondaryHeaderColor,
+          )
         ),
       ),
       body: SafeArea(

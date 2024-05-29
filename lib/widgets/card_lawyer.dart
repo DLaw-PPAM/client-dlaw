@@ -1,5 +1,7 @@
+import 'package:client_dlaw/common/navigation.dart';
 import 'package:client_dlaw/common/style.dart';
 import 'package:client_dlaw/data/model/models.dart';
+import 'package:client_dlaw/ui/lawyer_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class CardLawyer extends StatelessWidget {
@@ -10,7 +12,9 @@ class CardLawyer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigation.intentWithData(LawyerDetailPage.routeName, lawyer);
+      },
       child: Card(
         elevation: 8,
         margin: const EdgeInsets.symmetric(vertical: 6),
@@ -23,30 +27,29 @@ class CardLawyer extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(24),
                 child: SizedBox(
-                  width: 125,
-                  height: 100,
-                  child: Image.network(
-                    lawyer.user.profilePicture,
-                    fit: BoxFit.cover,
-                    loadingBuilder: (_, child, loadingProgress) {
-                      if (loadingProgress == null) {
-                        return child;
-                      }
-                      return const Center(
-                        child: CircularProgressIndicator(
+                    width: 125,
+                    height: 100,
+                    child: Image.network(
+                      lawyer.user.profilePicture ?? '',
+                      fit: BoxFit.cover,
+                      loadingBuilder: (_, child, loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        }
+                        return const Center(
+                          child: CircularProgressIndicator(
+                            color: grey,
+                          ),
+                        );
+                      },
+                      errorBuilder: (_, __, ___) {
+                        return const Icon(
+                          Icons.broken_image,
                           color: grey,
-                        ),
-                      );
-                    },
-                    errorBuilder: (_, __, ___) {
-                      return const Icon(
-                        Icons.broken_image,
-                        color: grey,
-                        size: 100,
-                      );
-                    },
-                  ),
-                ),
+                          size: 100,
+                        );
+                      },
+                    )),
               ),
               const SizedBox(width: 16),
               Expanded(
@@ -65,40 +68,43 @@ class CardLawyer extends StatelessWidget {
                     const SizedBox(height: 4),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.work,
                           color: grey,
                           size: 16,
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          lawyer.specialities.first.name,
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                color: const Color(0xFF616161),
-                              ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.location_pin,
-                          color: grey,
-                          size: 16,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          lawyer.user.address,
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                color: const Color(0xFF616161),
-                              ),
+                          lawyer.specialities?.first.name ?? '',
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: const Color(0xFF616161),
+                                  ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 4),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
+                          Icons.location_pin,
+                          color: grey,
+                          size: 16,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          lawyer.user.address ?? '',
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: const Color(0xFF616161),
+                                  ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        const Icon(
                           Icons.star,
                           color: Colors.amber,
                           size: 16,
@@ -106,9 +112,10 @@ class CardLawyer extends StatelessWidget {
                         const SizedBox(width: 4),
                         Text(
                           lawyer.rating.toStringAsFixed(1),
-                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                color: const Color(0xFF616161),
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: const Color(0xFF616161),
+                                  ),
                         ),
                       ],
                     ),
