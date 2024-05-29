@@ -1,14 +1,12 @@
 import 'package:client_dlaw/common/style.dart';
 import 'package:client_dlaw/ui/auth/register_screen.dart';
 import 'package:client_dlaw/ui/home_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = '/login';
 
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
   @override
   State<LoginScreen> createState() => _LoginScreenPage();
 }
@@ -26,6 +24,7 @@ class _LoginScreenPage extends State<LoginScreen> {
     Navigator.pushNamed(context, RegisterScreen.routeName);
   }
 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Login',
@@ -118,7 +117,7 @@ class _LoginScreenPage extends State<LoginScreen> {
                               onPressed: () {
                                 onFilterButtonPressed();
                               },
-                              child: Text("Login"),
+                              child: const Text("Login"),
                             )))
                   ])),
             )));

@@ -2,13 +2,12 @@ import 'package:client_dlaw/common/style.dart';
 import 'package:client_dlaw/ui/auth/login_screen.dart';
 
 import 'package:client_dlaw/ui/home_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String routeName = '/register';
 
-  const RegisterScreen({Key? key}) : super(key: key);
+  const RegisterScreen({super.key});
   @override
   State<RegisterScreen> createState() => _RegisterScreenPage();
 }
@@ -26,6 +25,7 @@ class _RegisterScreenPage extends State<RegisterScreen> {
     Navigator.pushNamed(context, HomePage.routeName);
   }
 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Register',
@@ -118,7 +118,7 @@ class _RegisterScreenPage extends State<RegisterScreen> {
                               onPressed: () {
                                 onRegisterButtonPressed();
                               },
-                              child: Text("Login"),
+                              child: const Text("Login"),
                             )))
                   ])),
             )));
