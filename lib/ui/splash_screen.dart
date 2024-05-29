@@ -16,7 +16,7 @@ class SplashScreen extends StatelessWidget {
       splashIconSize: 300,
       duration: 1500,
       nextScreen: const LoginScreen(),
-      splashTransition: SplashTransition.decoratedBoxTransition,
+      splashTransition: SplashTransition.fadeTransition,
       // make gradient background color
       backgroundColor: backgroundColor1,
     );

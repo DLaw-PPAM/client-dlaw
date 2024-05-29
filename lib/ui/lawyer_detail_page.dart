@@ -3,6 +3,7 @@ import 'package:client_dlaw/data/api/api_services.dart';
 import 'package:client_dlaw/data/model/models.dart';
 import 'package:client_dlaw/provider/detail_lawyer_provider.dart';
 import 'package:client_dlaw/utils/result_state.dart';
+import 'package:client_dlaw/widgets/dialog_add_review.dart';
 import 'package:client_dlaw/widgets/item_review.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -182,10 +183,20 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
                   style: textTheme.titleLarge,
                 ),
                 const SizedBox(height: 8),
+                if (lawyer.reviews != null) _buildListReview(lawyer.reviews!),
+                const SizedBox(height: 8),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return DialogAddReview(
+                            id: widget.lawyer.id,
+                          );
+                        });
+                  },
                   child: const Text(
-                    'Lihat Review',
+                    'Berikan Review',
                     style: TextStyle(
                       color: backgroundColor1,
                       fontWeight: FontWeight.bold,
@@ -193,7 +204,6 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
                     ),
                   ),
                 ),
-                if (lawyer.reviews != null) _buildListReview(lawyer.reviews!),
                 const SizedBox(
                   height: 300,
                 ),

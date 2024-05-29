@@ -1,9 +1,8 @@
 import 'package:client_dlaw/ui/search_page.dart';
-import 'package:client_dlaw/ui/components/home.dart';
+import 'package:client_dlaw/ui/home/home.dart';
 import 'package:client_dlaw/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomePage extends StatefulWidget {
   static const String routeName = '/home';
@@ -39,7 +38,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   final List<Widget> _listWidget = [
-    const Home(),
+    const Center(child: Text('Home Page')),
     const SearchPage(),
     const Center(child: Text('Case Page')),
   ];
