@@ -5,9 +5,11 @@ import 'package:client_dlaw/provider/lawyers_provider.dart';
 import 'package:client_dlaw/provider/search_lawyer_provider.dart';
 import 'package:client_dlaw/ui/auth/login_screen.dart';
 import 'package:client_dlaw/ui/auth/register_screen.dart';
+import 'package:client_dlaw/ui/profile/edit_profile.dart';
 import 'package:client_dlaw/ui/profile/profile.dart';
 import 'package:client_dlaw/ui/home_page.dart';
 import 'package:client_dlaw/ui/lawyer_detail_page.dart';
+import 'package:client_dlaw/ui/search_page.dart';
 import 'package:client_dlaw/ui/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +61,8 @@ class MyApp extends StatelessWidget {
           LoginScreen.routeName: (context) => const LoginScreen(),
           RegisterScreen.routeName: (context) => const RegisterScreen(),
           Profile.routeName: (context) => const Profile(),
+          SearchPage.routeName: (context) => const SearchPage(),
+          EditProfile.routeName: (context) => const EditProfile(),
         },
       ),
     );

@@ -1,6 +1,5 @@
+import 'package:client_dlaw/ui/profile/edit_profile.dart';
 import 'package:flutter/material.dart';
-import 'package:client_dlaw/ui/auth/login_screen.dart';
-import 'package:flutter/widgets.dart';
 
 class Profile extends StatefulWidget {
   static const String routeName = '/profile';
@@ -14,7 +13,7 @@ class _ProfileState extends State<Profile> {
   // @override
 
   void onEditButtonPressed() {
-    Navigator.pushNamed(context, LoginScreen.routeName);
+    Navigator.pushNamed(context, EditProfile.routeName);
   }
 
   @override
@@ -132,15 +131,15 @@ class _ProfileState extends State<Profile> {
                             vertical: 0, horizontal: 50),
                         child: OutlinedButton(
                           onPressed: () {},
-                          child: const Text("Register as Lawyer",
-                              style: TextStyle(color: Color(0xff587DBD))),
                           style: OutlinedButton.styleFrom(
-                            side: BorderSide(
+                            side: const BorderSide(
                                 width: 1.0, color: Color(0xff587DBD)),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                           ),
+                          child: const Text("Register as Lawyer",
+                              style: TextStyle(color: Color(0xff587DBD))),
                         )))
               ],
             )));
