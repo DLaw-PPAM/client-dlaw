@@ -206,6 +206,7 @@ class _EditProfileState extends State<EditProfile> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5))),
                       child: TextField(
+                        maxLines: 10,
                         controller: _bioController,
                         textAlignVertical: TextAlignVertical.center,
                         style:

@@ -1,3 +1,4 @@
+import 'package:client_dlaw/ui/notifications/notifications.dart';
 import 'package:client_dlaw/widgets/home_card.dart';
 import 'package:flutter/material.dart';
 import 'package:client_dlaw/ui/profile/profile.dart';
@@ -20,7 +21,7 @@ class _HomeState extends State<Home> {
   }
 
   void onNotificationButtonPressed() {
-    Navigator.pushNamed(context, HomePage.routeName);
+    Navigator.pushNamed(context, Notifications.routeName);
   }
 
   void onSearchButtonPressed() {
