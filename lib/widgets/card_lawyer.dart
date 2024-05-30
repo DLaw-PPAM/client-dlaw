@@ -88,7 +88,7 @@ class CardLawyer extends StatelessWidget {
                       children: [
                         const Icon(
                           Icons.location_pin,
-                          color: grey,
+                          color: Colors.blue,
                           size: 16,
                         ),
                         const SizedBox(width: 4),

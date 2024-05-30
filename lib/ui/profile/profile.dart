@@ -132,15 +132,15 @@ class _ProfileState extends State<Profile> {
                             vertical: 0, horizontal: 50),
                         child: OutlinedButton(
                           onPressed: () {},
-                          child: const Text("Register as Lawyer",
-                              style: TextStyle(color: Color(0xff587DBD))),
                           style: OutlinedButton.styleFrom(
-                            side: BorderSide(
+                            side: const BorderSide(
                                 width: 1.0, color: Color(0xff587DBD)),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                           ),
+                          child: const Text("Register as Lawyer",
+                              style: TextStyle(color: Color(0xff587DBD))),
                         )))
               ],
             )));

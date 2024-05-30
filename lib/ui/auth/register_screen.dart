@@ -1,5 +1,5 @@
+import 'package:client_dlaw/common/navigation.dart';
 import 'package:client_dlaw/common/style.dart';
-import 'package:client_dlaw/ui/auth/login_screen.dart';
 
 import 'package:client_dlaw/ui/home_page.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class _RegisterScreenPage extends State<RegisterScreen> {
   String? password;
 
   void onFilterButtonPressed() {
-    Navigator.pushNamed(context, LoginScreen.routeName);
+    Navigation.back();
   }
 
   void onRegisterButtonPressed() {

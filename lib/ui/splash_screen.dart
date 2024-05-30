@@ -12,12 +12,11 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      splash: Image.asset('assets/logo_splash.png', width: 300, height: 300),
+      splash: Image.asset('assets/logo_splash.png', width: 250, height: 250),
       splashIconSize: 300,
       duration: 1500,
       nextScreen: const LoginScreen(),
       splashTransition: SplashTransition.fadeTransition,
-      // make gradient background color
       backgroundColor: backgroundColor1,
     );
   }

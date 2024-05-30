@@ -45,7 +45,7 @@ class ApiServices {
               "password": "123456",
               "fullname": "Hotman Paris",
               "birthdate": "1960-01-01T00:00:00.000",
-              "phoneNumber": "08123456789",
+              "phoneNumber": "6282343765854",
               "address": "Jl. Gatot Subroto No. 1",
               "bio":
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
@@ -71,7 +71,7 @@ class ApiServices {
               "password": "123456",
               "fullname": "Joko Widodo",
               "birthdate": "1961-06-21T00:00:00.000",
-              "phoneNumber": "08123456789",
+              "phoneNumber": "6282343765854",
               "address": "Jl. Gatot Subroto No. 1",
               "bio": "President of Indonesia"
             }
@@ -116,7 +116,7 @@ class ApiServices {
             "password": "123456",
             "fullname": "Hotman Paris",
             "birthdate": "1960-01-01T00:00:00.000",
-            "phoneNumber": "08123456789",
+            "phoneNumber": "6282343765854",
             "address": "Jl. Gatot Subroto No. 1",
             "bio":
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
@@ -190,7 +190,7 @@ class ApiServices {
           "password": "123456",
           "fullname": "Hotman Paris",
           "birthdate": "1960-01-01T00:00:00.000",
-          "phoneNumber": "08123456789",
+          "phoneNumber": "6282343765854",
           "address": "Jl. Gatot Subroto No. 1",
           "bio":
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
@@ -371,7 +371,7 @@ class ApiServices {
               "password": "123456",
               "fullname": "Hotman Paris",
               "birthdate": "1960-01-01T00:00:00.000",
-              "phoneNumber": "08123456789",
+              "phoneNumber": "6282343765854",
               "address": "Jl. Gatot Subroto No. 1",
               "bio":
                   "Hotman was born on 20 October 1959 in Laguboti, a village in Toba Regency, North Sumatra. He was the sixth of 10 children in a Protestant Batak family.[3] His first name was taken from the Batak word hotma, which means 'steady'. His father ran an intercity bus company called Bintang Utara and often had to live away from home in the North Sumatran capital of Medan. His mother remained at Laguboti and encouraged the children to eat healthily, especially fish and papaya leaves, so they would develop high IQs. Eight of the 10 children became university graduates."
@@ -435,7 +435,7 @@ class ApiServices {
               "password": "123456",
               "fullname": "Joko Widodo",
               "birthdate": "1961-06-21T00:00:00.000",
-              "phoneNumber": "08123456789",
+              "phoneNumber": "6282343765854",
               "address": "Jl. Gatot Subroto No. 1",
               "bio": "President of Indonesia"
             }

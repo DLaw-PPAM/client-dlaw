@@ -86,9 +86,11 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
               children: [
                 Text(
                   lawyer.user.fullname,
-                  style: textTheme.headlineSmall,
+                  style: textTheme.headlineSmall!.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 16),
                 _buildListSpecialities(lawyer.specialities ?? []),
                 const SizedBox(height: 16),
                 Row(
@@ -115,7 +117,7 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
                       color: Colors.green,
                     ),
                     const SizedBox(width: 4),
-                    Text(lawyer.pricePerHour.toString() + ' dollar/hour')
+                    Text('${lawyer.pricePerHour} dollar/hour')
                   ],
                 ),
                 const SizedBox(height: 8),
@@ -204,8 +206,27 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 30),
+                SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 50),
+                        child: OutlinedButton(
+                          onPressed: () {},
+                          style: OutlinedButton.styleFrom(
+                            side: const BorderSide(
+                                width: 1.0, color: Color(0xff587DBD)),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                          child: const Text("Submit a Case",
+                              style: TextStyle(color: Color(0xff587DBD))),
+                        ))),
                 const SizedBox(
-                  height: 300,
+                  height: 100,
                 ),
               ],
             ),
@@ -268,6 +289,13 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
       ),
       child: Stack(children: [
         Scaffold(
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: backgroundColor1,
+            onPressed: () {
+              Navigator.pushNamed(context, '/contact', arguments: widget.lawyer.user.phoneNumber);
+            },
+            child: const Icon(Icons.chat_rounded, color: white,),
+          ),
           body: CustomScrollView(
             slivers: [
               _buildAppBar(),
@@ -301,7 +329,7 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
           ),
         ),
         Positioned(
-          top: 0,
+          top: 15,
           left: 15,
           child: SafeArea(
             child: Opacity(

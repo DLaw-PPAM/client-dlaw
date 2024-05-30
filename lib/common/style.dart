@@ -9,65 +9,65 @@ const backgroundColor1 = Color.fromRGBO(57, 57, 57, 1);
 const backgroundColor2 = Color(0x00000000);
 
 final TextTheme textTheme = TextTheme(
-  displayLarge: GoogleFonts.poppins(
+  displayLarge: GoogleFonts.montserrat(
     fontSize: 92,
     fontWeight: FontWeight.w300,
     letterSpacing: -1.5,
   ),
-  displayMedium: GoogleFonts.poppins(
+  displayMedium: GoogleFonts.montserrat(
     fontSize: 57,
     fontWeight: FontWeight.w300,
     letterSpacing: -0.5,
   ),
-  displaySmall: GoogleFonts.poppins(
+  displaySmall: GoogleFonts.montserrat(
     fontSize: 46,
     fontWeight: FontWeight.w400,
   ),
-  headlineMedium: GoogleFonts.poppins(
+  headlineMedium: GoogleFonts.montserrat(
     fontSize: 32,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
   ),
-  headlineSmall: GoogleFonts.poppins(
+  headlineSmall: GoogleFonts.montserrat(
     fontSize: 23,
     fontWeight: FontWeight.w400,
   ),
-  titleLarge: GoogleFonts.poppins(
+  titleLarge: GoogleFonts.montserrat(
     fontSize: 19,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.15,
   ),
-  titleMedium: GoogleFonts.poppins(
+  titleMedium: GoogleFonts.montserrat(
     fontSize: 15,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.15,
   ),
-  titleSmall: GoogleFonts.poppins(
+  titleSmall: GoogleFonts.montserrat(
     fontSize: 13,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.1,
   ),
-  bodyLarge: GoogleFonts.poppins(
+  bodyLarge: GoogleFonts.montserrat(
     fontSize: 16,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.5,
   ),
-  bodyMedium: GoogleFonts.poppins(
+  bodyMedium: GoogleFonts.montserrat(
     fontSize: 14,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
   ),
-  labelLarge: GoogleFonts.poppins(
+  labelLarge: GoogleFonts.montserrat(
     fontSize: 14,
     fontWeight: FontWeight.w500,
     letterSpacing: 1.25,
   ),
-  bodySmall: GoogleFonts.poppins(
+  bodySmall: GoogleFonts.montserrat(
     fontSize: 12,
     fontWeight: FontWeight.w400,
     letterSpacing: 0.4,
   ),
-  labelSmall: GoogleFonts.poppins(
+  labelSmall: GoogleFonts.montserrat(
     fontSize: 10,
     fontWeight: FontWeight.w400,
     letterSpacing: 1.5,
