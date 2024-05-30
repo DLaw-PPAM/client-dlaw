@@ -2,6 +2,7 @@ import 'package:client_dlaw/common/style.dart';
 import 'package:client_dlaw/data/api/api_services.dart';
 import 'package:client_dlaw/data/model/models.dart';
 import 'package:client_dlaw/provider/detail_lawyer_provider.dart';
+import 'package:client_dlaw/ui/cases/edit_case.dart';
 import 'package:client_dlaw/utils/result_state.dart';
 import 'package:client_dlaw/widgets/dialog_add_review.dart';
 import 'package:client_dlaw/widgets/item_review.dart';
@@ -24,6 +25,10 @@ class LawyerDetailPage extends StatefulWidget {
 class _LawyerDetailPageState extends State<LawyerDetailPage> {
   bool isExpanded = false;
   bool isHeroLoaded = false;
+
+  void onSubmitCaseButtonPressed() {
+    Navigator.pushNamed(context, UploadCase.routeName);
+  }
 
   @override
   void initState() {
@@ -214,7 +219,9 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
                         margin: const EdgeInsets.symmetric(
                             vertical: 0, horizontal: 50),
                         child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            onSubmitCaseButtonPressed();
+                          },
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(
                                 width: 1.0, color: Color(0xff587DBD)),
