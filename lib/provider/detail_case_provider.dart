@@ -1,3 +1,4 @@
+
 import 'dart:io';
 
 import 'package:client_dlaw/data/api/api_services.dart';
@@ -5,29 +6,29 @@ import 'package:client_dlaw/data/response/responses.dart';
 import 'package:client_dlaw/utils/result_state.dart';
 import 'package:flutter/material.dart';
 
-class DetailLawyerProvider extends ChangeNotifier {
+class DetailCaseProvider extends ChangeNotifier {
   final ApiServices apiServices;
   final String id;
 
-  DetailLawyerProvider({required this.apiServices, required this.id}) {
-    _fetchDetailLawyer(id);
+  DetailCaseProvider({required this.apiServices, required this.id}) {
+    _fetchDetailCase(id);
   }
 
-  late DetailLawyerResult _detailLawyerResult;
+  late DetailCaseResult _detailCaseResult;
   late ResultState _state;
   String _message = '';
 
   String get message => _message;
 
-  DetailLawyerResult get result => _detailLawyerResult;
+  DetailCaseResult get result => _detailCaseResult;
 
   ResultState get state => _state;
 
-  Future<dynamic> _fetchDetailLawyer(id) async {
+  Future<dynamic> _fetchDetailCase(id) async {
     try {
       _state = ResultState.loading;
       notifyListeners();
-      final response = await apiServices.getDetailLawyer(id);
+      final response = await apiServices.getDetailCase(id);
       if (response.error) {
         _state = ResultState.noData;
         notifyListeners();
@@ -35,7 +36,7 @@ class DetailLawyerProvider extends ChangeNotifier {
       } else {
         _state = ResultState.hasData;
         notifyListeners();
-        return _detailLawyerResult = response;
+        return _detailCaseResult = response;
       }
     } on SocketException {
       _state = ResultState.error;

@@ -1,27 +1,24 @@
 import 'package:client_dlaw/common/style.dart';
 import 'package:client_dlaw/data/api/api_services.dart';
 import 'package:client_dlaw/data/model/models.dart';
-import 'package:client_dlaw/provider/detail_lawyer_provider.dart';
+import 'package:client_dlaw/provider/detail_case_provider.dart';
 import 'package:client_dlaw/utils/result_state.dart';
-import 'package:client_dlaw/widgets/dialog_add_review.dart';
-import 'package:client_dlaw/widgets/item_review.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-class LawyerDetailPage extends StatefulWidget {
-  static const routeName = '/lawyer_detail';
+class CaseDetailPage extends StatefulWidget {
+  static const routeName = '/case_detail';
 
-  final LawyerUser lawyer;
+  final Case kasus;
 
-  const LawyerDetailPage({super.key, required this.lawyer});
+  const CaseDetailPage({super.key, required this.kasus});
 
   @override
-  State<LawyerDetailPage> createState() => _LawyerDetailPageState();
+  State<CaseDetailPage> createState() => _KasusDetailPageState();
 }
 
-class _LawyerDetailPageState extends State<LawyerDetailPage> {
+class _KasusDetailPageState extends State<CaseDetailPage> {
   bool isExpanded = false;
   bool isHeroLoaded = false;
 
@@ -44,10 +41,10 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
       flexibleSpace: Positioned.fill(
         child: FlexibleSpaceBar(
           background: Hero(
-            tag: widget.lawyer.user.id,
+            tag: widget.kasus.lawyer.user.id,
             child: ClipRRect(
                 child: Image.network(
-              widget.lawyer.user.profilePicture ?? '',
+              widget.kasus.lawyer.user.profilePicture ?? '',
               fit: BoxFit.cover,
               loadingBuilder: (_, child, loadingProgress) {
                 if (loadingProgress == null) {
@@ -74,7 +71,7 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
     );
   }
 
-  Widget _buildBody(LawyerUser lawyer) {
+  Widget _buildBody(Case kasus) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,52 +82,65 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  lawyer.user.fullname,
+                  kasus.subject,
                   style: textTheme.headlineSmall!.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 16),
-                _buildListSpecialities(lawyer.specialities ?? []),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.location_on,
-                      color: Colors.blue,
-                    ),
-                    const SizedBox(width: 4),
-                    Expanded(
-                      child: Text(
-                        '${lawyer.user.address ?? ''}, ${lawyer.user.address ?? ''}',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                Text(
+                  kasus.lawyer.user.fullname,
+                ),
+                SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.only(left: 3, top: 5, right: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Hourly Fee'),
+                          Text(
+                            '\$${(kasus.lawyer.pricePerHour * kasus.hour).toString()}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 4),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Additional Fee'),
+                          Text(
+                            '\$${kasus.additionFee.toString()}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Total',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            '\$${((kasus.lawyer.pricePerHour * kasus.hour) + kasus.additionFee).toString()}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
+                const SizedBox(height: 4),
                 const SizedBox(height: 8),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.attach_money_rounded,
-                      color: Colors.green,
-                    ),
-                    const SizedBox(width: 4),
-                    Text('${lawyer.pricePerHour} dollar/hour')
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(lawyer.rating.toString()),
-                  ],
-                ),
                 Container(
                   margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
                   decoration: const ShapeDecoration(
@@ -144,16 +154,17 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
                   ),
                 ),
                 Text(
-                  'Description',
+                  'Notes',
                   style: textTheme.titleLarge,
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  lawyer.user.bio ?? '',
+                  kasus.notes,
                   style: textTheme.bodyMedium,
                   maxLines: isExpanded ? 100 : 2,
                   overflow: TextOverflow.ellipsis,
                 ),
+                const SizedBox(height: 10),
                 TextButton(
                   onPressed: () {
                     setState(() {
@@ -181,49 +192,36 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
                   ),
                 ),
                 Text(
-                  'Reviews',
+                  'Media',
                   style: textTheme.titleLarge,
                 ),
                 const SizedBox(height: 8),
-                if (lawyer.reviews != null) _buildListReview(lawyer.reviews!),
-                const SizedBox(height: 8),
-                TextButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return DialogAddReview(
-                            id: widget.lawyer.id,
-                          );
-                        });
-                  },
-                  child: const Text(
-                    'Berikan Review',
+                Center(
+                  child: Text(
+                    'No media attached',
                     style: TextStyle(
-                      color: backgroundColor1,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline,
+                      color: grey,
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 45),
                 SizedBox(
                     width: double.infinity,
-                    height: 50,
+                    height: 45,
                     child: Container(
                         margin: const EdgeInsets.symmetric(
                             vertical: 0, horizontal: 50),
                         child: OutlinedButton(
                           onPressed: () {},
                           style: OutlinedButton.styleFrom(
-                            side: const BorderSide(
-                                width: 1.0, color: Color(0xff587DBD)),
+                            side:
+                                const BorderSide(width: 1.0, color: Colors.red),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                           ),
-                          child: const Text("Submit a Case",
-                              style: TextStyle(color: Color(0xff587DBD))),
+                          child: const Text("Hapus Kasus",
+                              style: TextStyle(color: Colors.red)),
                         ))),
                 const SizedBox(
                   height: 100,
@@ -236,71 +234,31 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
     );
   }
 
-  Widget _buildListReview(List<Review> reviews) {
-    return Container(
-      child: reviews.isNotEmpty
-          ? SizedBox(
-              height: 110,
-              child: ListView.builder(
-                itemCount: reviews.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-                  child: ItemReview(review: reviews[index]),
-                ),
-              ),
-            )
-          : const Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: Text('No reviews yet'),
-            ),
-    );
-  }
-
-  Widget _buildListSpecialities(List<Specialities> categories) {
-    return SizedBox(
-      height: 35,
-      child: ListView.builder(
-        itemCount: categories.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding:
-                EdgeInsets.only(right: index == categories.length - 1 ? 0 : 8),
-            child: Chip(
-              label: Text(
-                categories[index].name,
-                style: textTheme.bodySmall,
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<DetailLawyerProvider>(
-      create: (_) => DetailLawyerProvider(
+    return ChangeNotifierProvider<DetailCaseProvider>(
+      create: (_) => DetailCaseProvider(
         apiServices: ApiServices(),
-        id: widget.lawyer.id,
+        id: widget.kasus.id,
       ),
       child: Stack(children: [
         Scaffold(
           floatingActionButton: FloatingActionButton(
             backgroundColor: backgroundColor1,
             onPressed: () {
-              Navigator.pushNamed(context, '/contact', arguments: widget.lawyer.user.phoneNumber);
+              Navigator.pushNamed(context, '/contact',
+                  arguments: widget.kasus.lawyer.user.phoneNumber);
             },
-            child: const Icon(Icons.chat_rounded, color: white,),
+            child: const Icon(
+              Icons.chat_rounded,
+              color: white,
+            ),
           ),
           body: CustomScrollView(
             slivers: [
               _buildAppBar(),
               SliverToBoxAdapter(
-                child: Consumer<DetailLawyerProvider>(
+                child: Consumer<DetailCaseProvider>(
                   builder: (context, value, _) {
                     if (value.state == ResultState.loading) {
                       return const Center(
@@ -308,7 +266,7 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
                         child: CircularProgressIndicator(),
                       );
                     } else if (value.state == ResultState.hasData) {
-                      return _buildBody(value.result.lawyer);
+                      return _buildBody(value.result.caseDetails);
                     } else if (value.state == ResultState.noData) {
                       return Center(
                         child: Text(value.message),

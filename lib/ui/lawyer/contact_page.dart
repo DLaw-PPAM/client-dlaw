@@ -11,12 +11,24 @@ class ContactPage extends StatelessWidget {
 
   const ContactPage({super.key, required this.phoneNumber});
 
+  String initializePhoneIndo(String phoneNumber) {
+    if (phoneNumber.startsWith('0')) {
+      return '62${phoneNumber.substring(1)}';
+    } else if (phoneNumber.startsWith('62')) {
+      return phoneNumber;
+    } else {
+      return '62$phoneNumber';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final phoneIndo = initializePhoneIndo(phoneNumber);
+
     final Uri whatsappUrl = Uri(
       scheme: 'https',
       host: 'wa.me',
-      path: phoneNumber,
+      path: phoneIndo,
     );
     return Stack(children: [
       Center(
@@ -51,7 +63,7 @@ class ContactPage extends StatelessWidget {
                 ),
               ),
               child: Text(
-                ('+$phoneNumber'),
+                ('+$phoneIndo'),
                 style: const TextStyle(
                   fontSize: 13,
                   color: white,

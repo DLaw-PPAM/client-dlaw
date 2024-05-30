@@ -4,8 +4,8 @@ class LawyerUser {
   late String id;
   late String clientId;
   late num pricePerHour;
-  late double rating;
-  late List<Specialities>? specialities;
+  late num rating;
+  late List<Specialities> specialities;
   late List<Review>? reviews;
   late User user;
 
@@ -21,16 +21,16 @@ class LawyerUser {
 
   LawyerUser.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    clientId = json['clientId'];
-    pricePerHour = json['pricePerHour'];
+    clientId = json['client_id'];
+    pricePerHour = json['price_per_hour'];
     rating = json['rating'];
-    specialities = json['specialities']
+    specialities = json['Specialties']
         .map<Specialities>((category) => Specialities.fromJson(category))
         .toList();
-    reviews = json['reviews']
+    reviews = json['Reviews']
         .map<Review>((review) => Review.fromJson(review))
         .toList();
-    user = User.fromJson(json['user']);
+    user = User.fromJson(json['User']);
   }
 }
 

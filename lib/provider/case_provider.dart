@@ -5,49 +5,40 @@ import 'package:client_dlaw/data/response/responses.dart';
 import 'package:client_dlaw/utils/result_state.dart';
 import 'package:flutter/material.dart';
 
-class SearchLawyersProvider extends ChangeNotifier {
+class CasesProvider extends ChangeNotifier {
   final ApiServices apiService;
+  final String id;
 
-  SearchLawyersProvider({
+  CasesProvider({
     required this.apiService,
+    required this.id,
   }) {
-    searchLawyers(query);
+    _fetchCasesByUserId(id);
   }
 
-  late LawyersResult _lawyersResult;
+  late CasesResult _articlesResult;
   late ResultState _state;
   String _message = '';
-  String _query = '';
 
   String get message => _message;
 
-  String get query => _query;
-
-  LawyersResult get result => _lawyersResult;
+  CasesResult get result => _articlesResult;
 
   ResultState get state => _state;
 
-  Future<dynamic> searchLawyers(String keyword) async {
+  Future<dynamic> _fetchCasesByUserId(id) async {
     try {
       _state = ResultState.loading;
-      _query = keyword;
       notifyListeners();
-
-      if (keyword.isEmpty) {
-        _state = ResultState.noData;
-        notifyListeners();
-        return _message = 'Empty Data';
-      }
-
-      final lawyer = await apiService.getLawyersByKeyword(keyword);
-      if (lawyer.lawyers.isEmpty) {
+      final cases = await apiService.getCasesByUserId(id);
+      if (cases.cases.isEmpty) {
         _state = ResultState.noData;
         notifyListeners();
         return _message = 'Empty Data';
       } else {
         _state = ResultState.hasData;
         notifyListeners();
-        return _lawyersResult = lawyer;
+        return _articlesResult = cases;
       }
     } on SocketException {
       _state = ResultState.error;

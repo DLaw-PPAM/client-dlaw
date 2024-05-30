@@ -1,7 +1,7 @@
 import 'package:client_dlaw/common/navigation.dart';
 import 'package:client_dlaw/common/style.dart';
 import 'package:client_dlaw/data/model/models.dart';
-import 'package:client_dlaw/ui/lawyer_detail_page.dart';
+import 'package:client_dlaw/ui/lawyer/lawyer_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class CardLawyer extends StatelessWidget {
@@ -75,7 +75,9 @@ class CardLawyer extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          lawyer.specialities?.first.name ?? '',
+                          lawyer.specialities.isNotEmpty
+                              ? lawyer.specialities.first.name
+                              : 'General',
                           style:
                               Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     color: const Color(0xFF616161),
@@ -95,10 +97,12 @@ class CardLawyer extends StatelessWidget {
                         Expanded(
                           child: Text(
                             lawyer.user.address ?? '',
-                            style:
-                                Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                      color: const Color(0xFF616161),
-                                    ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                  color: const Color(0xFF616161),
+                                ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),

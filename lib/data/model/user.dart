@@ -28,12 +28,12 @@ class User {
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     username = json['username'];
-    profilePicture = json['profilePicture'];
+    profilePicture = json['profile_picture'];
     email = json['email'];
     password = json['password'];
-    fullname = json['fullname'];
-    birthdate = DateTime.parse(json['birthdate']);
-    phoneNumber = json['phoneNumber'];
+    fullname = json['full_name'];
+    birthdate = DateTime.parse(json['birth_date']);
+    phoneNumber = json['phone_number'];
     address = json['address'];
     bio = json['bio'];
   }

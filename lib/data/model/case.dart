@@ -10,6 +10,7 @@ class Case {
   late num additionFee;
   late String lawyerId;
   late String clientId;
+  late LawyerUser lawyer;
 
   Case({
     required this.id,
@@ -21,6 +22,7 @@ class Case {
     required this.additionFee,
     required this.lawyerId,
     required this.clientId,
+    required this.lawyer,
   });
 
   Case.fromJson(Map<String, dynamic> json) {
@@ -30,8 +32,9 @@ class Case {
     notes = json['notes'];
     status = json['status'];
     hour = json['hour'];
-    additionFee = json['additionFee'];
-    lawyerId = json['lawyerId'];
-    clientId = json['clientId'];
+    additionFee = json['addition_fee'];
+    lawyerId = json['lawyer_id'];
+    clientId = json['client_id'];
+    lawyer = LawyerUser.fromJson(json['Lawyer']);
   }
 }

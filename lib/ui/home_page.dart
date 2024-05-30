@@ -1,3 +1,4 @@
+import 'package:client_dlaw/ui/case_page.dart';
 import 'package:client_dlaw/ui/search_page.dart';
 import 'package:client_dlaw/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _listWidget = [
     const Center(child: Text('Home Page')),
     const SearchPage(),
-    const Center(child: Text('Case Page')),
+    const CasePage(),
   ];
 
   Widget _buildAndroid(BuildContext context) {

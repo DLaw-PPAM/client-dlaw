@@ -3,7 +3,7 @@ import 'package:client_dlaw/data/response/responses.dart';
 import 'package:http/http.dart' show Client;
 
 class ApiServices {
-  final String baseUrl = "https://xnxx.com";
+  final String baseUrl = "http://127.0.0.1:8080/api/v1";
 
   String get urlImage => "$baseUrl/images/";
 
@@ -13,159 +13,174 @@ class ApiServices {
     client ??= Client();
   }
 
+  Future<LawyersResult> getLawyers() async {
+    final response = await client!.get(Uri.parse("$baseUrl/lawyers"));
+    if (response.statusCode == 200) {
+      return LawyersResult.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load lawyers');
+    }
+  }
   // Future<LawyersResult> getLawyers() async {
-  //   final response = await client!.get(Uri.parse("$baseUrl/lawyers"));
-  //   if (response.statusCode == 200) {
-  //     return LawyersResult.fromJson(json.decode(response.body));
-  //   } else {
-  //     throw Exception('Failed to load lawyers');
+  //   try {
+  //     final responseBody = {
+  //       "error": false,
+  //       "message": "Success",
+  //       "lawyers": [
+  //         {
+  //           "id": "1",
+  //           "client_id": "1",
+  //           "price_per_hour": 100,
+  //           "rating": 4.5,
+  //           "Specialties": [
+  //             {"name": "Criminal Law"},
+  //             {"name": "Civil Law"}
+  //           ],
+  //           "User": {
+  //             "id": "1",
+  //             "username": "hotmanparis",
+  //             "profile_picture":
+  //                 "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+  //             "email": "hotman@hotmail.com",
+  //             "password": "123456",
+  //             "full_name": "Hotman Paris",
+  //             "birth_date": "1960-01-01T00:00:00.000",
+  //             "phone_number": "82343765854",
+  //             "address": "Jl. Gatot Subroto No. 1",
+  //             "bio":
+  //                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  //           }
+  //         },
+  //         {
+  //           "id": "3",
+  //           "client_id": "2",
+  //           "price_per_hour": 300,
+  //           "rating": 4.0,
+  //           "Specialties": [
+  //             {"name": "Criminal Law"},
+  //             {"name": "Civil Law"},
+  //             {"name": "Family Law"},
+  //             {"name": "Corporate Law"}
+  //           ],
+  //           "User": {
+  //             "id": "2",
+  //             "username": "jokowi",
+  //             "profile_picture":
+  //                 "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Joko_Widodo_2019_official_portrait.jpg/220px-Joko_Widodo_2019_official_portrait.jpg",
+  //             "email": "jokowi@ri.co.id",
+  //             "password": "123456",
+  //             "full_name": "Joko Widodo",
+  //             "birth_date": "1961-06-21T00:00:00.000",
+  //             "phone_number": "82343765854",
+  //             "address": "Jl. Gatot Subroto No. 1",
+  //             "bio": "President of Indonesia"
+  //           }
+  //         }
+  //       ]
+  //     };
+  //     return LawyersResult.fromJson(responseBody);
+  //   } catch (e) {
+  //     throw Exception('An error occurred: $e');
   //   }
   // }
-  Future<LawyersResult> getLawyers() async {
-    try {
-      final responseBody = {
-        "error": false,
-        "message": "Success",
-        "lawyers": [
-          {
-            "id": "1",
-            "clientId": "1",
-            "pricePerHour": 100,
-            "rating": 4.5,
-            "specialities": [
-              {"name": "Criminal Law"},
-              {"name": "Civil Law"}
-            ],
-            "user": {
-              "id": "1",
-              "username": "hotmanparis",
-              "profilePicture":
-                  "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
-              "email": "hotman@hotmail.com",
-              "password": "123456",
-              "fullname": "Hotman Paris",
-              "birthdate": "1960-01-01T00:00:00.000",
-              "phoneNumber": "6282343765854",
-              "address": "Jl. Gatot Subroto No. 1",
-              "bio":
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-            }
-          },
-          {
-            "id": "3",
-            "clientId": "2",
-            "pricePerHour": 300,
-            "rating": 4.0,
-            "specialities": [
-              {"name": "Criminal Law"},
-              {"name": "Civil Law"},
-              {"name": "Family Law"},
-              {"name": "Corporate Law"}
-            ],
-            "user": {
-              "id": "2",
-              "username": "jokowi",
-              "profilePicture":
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Joko_Widodo_2019_official_portrait.jpg/220px-Joko_Widodo_2019_official_portrait.jpg",
-              "email": "jokowi@ri.co.id",
-              "password": "123456",
-              "fullname": "Joko Widodo",
-              "birthdate": "1961-06-21T00:00:00.000",
-              "phoneNumber": "6282343765854",
-              "address": "Jl. Gatot Subroto No. 1",
-              "bio": "President of Indonesia"
-            }
-          }
-        ]
-      };
-      return LawyersResult.fromJson(responseBody);
-    } catch (e) {
-      throw Exception('An error occurred: $e');
+
+  Future<DetailLawyerResult> getDetailLawyer(String lawyer_id) async {
+    final response =
+        await client!.get(Uri.parse("$baseUrl/lawyers/$lawyer_id"));
+    if (response.statusCode == 200) {
+      try {
+        final responseBody = json.decode(response.body);
+
+        final lawyer = responseBody['lawyer'];
+
+        final body = {
+          "error": false,
+          "message": "Success",
+          "lawyer": lawyer,
+        };
+
+        return DetailLawyerResult.fromJson(body);
+      } catch (e) {
+        throw Exception('An error occurred while get detail lawyer: $e');
+      }
+    } else {
+      throw Exception('Failed to load detail lawyer');
     }
   }
 
-  // Future<DetailLawyerResult> getDetailLawyer(String lawyerId) async {
-  //   final response =
-  //       await client!.get(Uri.parse("$baseUrl/lawyers/detail/$lawyerId"));
-  //   if (response.statusCode == 200) {
-  //     return DetailLawyerResult.fromJson(json.decode(response.body));
-  //   } else {
-  //     throw Exception('Failed to load detail lawyer');
+  // Future<DetailLawyerResult> getDetailLawyer(String lawyer_id) async {
+  //   try {
+  //     final responseBody = {
+  //       "error": false,
+  //       "message": "Success",
+  //       "Lawyer": {
+  //         "id": "1",
+  //         "client_id": "1",
+  //         "price_per_hour": 100,
+  //         "rating": 4.5,
+  //         "Specialties": [
+  //           {"name": "Criminal Law"},
+  //           {"name": "Family Law"}
+  //         ],
+  //         "User": {
+  //           "id": "1",
+  //           "username": "hotmanparis",
+  //           "profile_picture":
+  //               "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+  //           "email": "hotman@hotmail.com",
+  //           "password": "123456",
+  //           "full_name": "Hotman Paris",
+  //           "birth_date": "1960-01-01T00:00:00.000",
+  //           "phone_number": "82343765854",
+  //           "address": "Jl. Gatot Subroto No. 1",
+  //           "bio":
+  //               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  //         },
+  //         "Reviews": [
+  //           {
+  //             "id": "1",
+  //             "rating": 4.5,
+  //             "description": "Great lawyer, very helpful",
+  //             "timestamp": "2024-05-28T00:00:00.000Z",
+  //             "lawyer_id": "1",
+  //             "client_id": "1",
+  //             "client_name": "John Doe"
+  //           },
+  //           {
+  //             "id": "2",
+  //             "rating": 3.5,
+  //             "description": "Good lawyer, but need to improve",
+  //             "timestamp": "2024-05-28T00:00:00.000Z",
+  //             "lawyer_id": "2",
+  //             "client_id": "2",
+  //             "client_name": "John Doe"
+  //           },
+  //           {
+  //             "id": "3",
+  //             "rating": 5,
+  //             "description": "Excellent lawyer, very professional",
+  //             "timestamp": "2024-05-28T00:00:00.000Z",
+  //             "lawyer_id": "1",
+  //             "client_id": "3",
+  //             "client_name": "John Doe"
+  //           },
+  //           {
+  //             "id": "4",
+  //             "rating": 4,
+  //             "description": "Very helpful lawyer, highly recommended",
+  //             "timestamp": "2024-05-28T00:00:00.000Z",
+  //             "lawyer_id": "2",
+  //             "client_id": "4",
+  //             "client_name": "John Doe"
+  //           }
+  //         ]
+  //       }
+  //     };
+  //     return DetailLawyerResult.fromJson(responseBody);
+  //   } catch (e) {
+  //     throw Exception('An error occurred: $e');
   //   }
   // }
-  Future<DetailLawyerResult> getDetailLawyer(String lawyerId) async {
-    try {
-      final responseBody = {
-        "error": false,
-        "message": "Success",
-        "lawyer": {
-          "id": "1",
-          "clientId": "1",
-          "pricePerHour": 100,
-          "rating": 4.5,
-          "specialities": [
-            {"name": "Criminal Law"},
-            {"name": "Family Law"}
-          ],
-          "user": {
-            "id": "1",
-            "username": "hotmanparis",
-            "profilePicture":
-                "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
-            "email": "hotman@hotmail.com",
-            "password": "123456",
-            "fullname": "Hotman Paris",
-            "birthdate": "1960-01-01T00:00:00.000",
-            "phoneNumber": "6282343765854",
-            "address": "Jl. Gatot Subroto No. 1",
-            "bio":
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-          },
-          "reviews": [
-            {
-              "id": "1",
-              "rating": 4.5,
-              "description": "Great lawyer, very helpful",
-              "timestamp": "2024-05-28T00:00:00.000Z",
-              "lawyerId": "1",
-              "clientId": "1",
-              "clientName": "John Doe"
-            },
-            {
-              "id": "2",
-              "rating": 3.5,
-              "description": "Good lawyer, but need to improve",
-              "timestamp": "2024-05-28T00:00:00.000Z",
-              "lawyerId": "2",
-              "clientId": "2",
-              "clientName": "John Doe"
-            },
-            {
-              "id": "3",
-              "rating": 5,
-              "description": "Excellent lawyer, very professional",
-              "timestamp": "2024-05-28T00:00:00.000Z",
-              "lawyerId": "1",
-              "clientId": "3",
-              "clientName": "John Doe"
-            },
-            {
-              "id": "4",
-              "rating": 4,
-              "description": "Very helpful lawyer, highly recommended",
-              "timestamp": "2024-05-28T00:00:00.000Z",
-              "lawyerId": "2",
-              "clientId": "4",
-              "clientName": "John Doe"
-            }
-          ]
-        }
-      };
-      return DetailLawyerResult.fromJson(responseBody);
-    } catch (e) {
-      throw Exception('An error occurred: $e');
-    }
-  }
 
   // Future<DetailUserResult> getDetailUser(String userId) async {
   //   final response =
@@ -176,21 +191,22 @@ class ApiServices {
   //     throw Exception('Failed to load detail user');
   //   }
   // }
+
   Future<DetailUserResult> getDetailUser(String userId) async {
     try {
       final responseBody = {
         "error": false,
         "message": "Success",
-        "user": {
+        "User": {
           "id": "1",
           "username": "hotmanparis",
-          "profilePicture":
+          "profile_picture":
               "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
           "email": "hotman@hotmail.com",
           "password": "123456",
-          "fullname": "Hotman Paris",
-          "birthdate": "1960-01-01T00:00:00.000",
-          "phoneNumber": "6282343765854",
+          "full_name": "Hotman Paris",
+          "birth_date": "1960-01-01T00:00:00.000",
+          "phone_number": "82343765854",
           "address": "Jl. Gatot Subroto No. 1",
           "bio":
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
@@ -219,52 +235,300 @@ class ApiServices {
           {
             "id": "1",
             "subject": "Divorce",
-            "media": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+            "media": "",
             "notes": "Need help with divorce process",
             "status": "On Going",
             "hour": 2,
-            "additionFee": 0,
-            "lawyerId": "1",
-            "clientId": "1"
+            "addition_fee": 0,
+            "lawyer_id": "1",
+            "client_id": "1",
+            "Lawyer": {
+              "id": "1",
+              "client_id": "1",
+              "price_per_hour": 100,
+              "rating": 4.5,
+              "Specialties": [
+                {"name": "Criminal Law"},
+                {"name": "Family Law"}
+              ],
+              "User": {
+                "id": "1",
+                "username": "hotmanparis",
+                "profile_picture":
+                    "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+                "email": "hotman@hotmail.com",
+                "password": "123456",
+                "full_name": "Hotman Paris",
+                "birth_date": "1960-01-01T00:00:00.000",
+                "phone_number": "82343765854",
+                "address": "Jl. Gatot Subroto No. 1",
+                "bio":
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+              },
+              "Reviews": [
+                {
+                  "id": "1",
+                  "rating": 4.5,
+                  "description": "Great lawyer, very helpful",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "1",
+                  "client_id": "1",
+                  "client_name": "John Doe"
+                },
+                {
+                  "id": "2",
+                  "rating": 3.5,
+                  "description": "Good lawyer, but need to improve",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "2",
+                  "client_id": "2",
+                  "client_name": "John Doe"
+                },
+                {
+                  "id": "3",
+                  "rating": 5,
+                  "description": "Excellent lawyer, very professional",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "1",
+                  "client_id": "3",
+                  "client_name": "John Doe"
+                },
+                {
+                  "id": "4",
+                  "rating": 4,
+                  "description": "Very helpful lawyer, highly recommended",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "2",
+                  "client_id": "4",
+                  "client_name": "John Doe"
+                }
+              ]
+            }
           },
           {
             "id": "2",
             "subject": "Criminal",
-            "media": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+            "media": "",
             "notes": "Need help with criminal case",
             "status": "On Going",
             "hour": 3,
-            "additionFee": 0,
-            "lawyerId": "1",
-            "clientId": "2"
+            "addition_fee": 0,
+            "lawyer_id": "1",
+            "client_id": "2",
+            "Lawyer": {
+              "id": "1",
+              "client_id": "1",
+              "price_per_hour": 100,
+              "rating": 4.5,
+              "Specialties": [
+                {"name": "Criminal Law"},
+                {"name": "Family Law"}
+              ],
+              "User": {
+                "id": "1",
+                "username": "hotmanparis",
+                "profile_picture":
+                    "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+                "email": "hotman@hotmail.com",
+                "password": "123456",
+                "full_name": "Hotman Paris",
+                "birth_date": "1960-01-01T00:00:00.000",
+                "phone_number": "82343765854",
+                "address": "Jl. Gatot Subroto No. 1",
+                "bio":
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+              },
+              "Reviews": [
+                {
+                  "id": "1",
+                  "rating": 4.5,
+                  "description": "Great lawyer, very helpful",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "1",
+                  "client_id": "1",
+                  "client_name": "John Doe"
+                },
+                {
+                  "id": "2",
+                  "rating": 3.5,
+                  "description": "Good lawyer, but need to improve",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "2",
+                  "client_id": "2",
+                  "client_name": "John Doe"
+                },
+                {
+                  "id": "3",
+                  "rating": 5,
+                  "description": "Excellent lawyer, very professional",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "1",
+                  "client_id": "3",
+                  "client_name": "John Doe"
+                },
+                {
+                  "id": "4",
+                  "rating": 4,
+                  "description": "Very helpful lawyer, highly recommended",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "2",
+                  "client_id": "4",
+                  "client_name": "John Doe"
+                }
+              ]
+            }
           },
           {
             "id": "3",
             "subject": "Business",
-            "media": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+            "media": "",
             "notes": "Need help with business law",
             "status": "On Going",
             "hour": 4,
-            "additionFee": 0,
-            "lawyerId": "2",
-            "clientId": "3"
+            "addition_fee": 0,
+            "lawyer_id": "2",
+            "client_id": "3",
+            "Lawyer": {
+              "id": "1",
+              "client_id": "1",
+              "price_per_hour": 100,
+              "rating": 4.5,
+              "Specialties": [
+                {"name": "Criminal Law"},
+                {"name": "Family Law"}
+              ],
+              "User": {
+                "id": "1",
+                "username": "hotmanparis",
+                "profile_picture":
+                    "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+                "email": "hotman@hotmail.com",
+                "password": "123456",
+                "full_name": "Hotman Paris",
+                "birth_date": "1960-01-01T00:00:00.000",
+                "phone_number": "82343765854",
+                "address": "Jl. Gatot Subroto No. 1",
+                "bio":
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+              },
+              "Reviews": [
+                {
+                  "id": "1",
+                  "rating": 4.5,
+                  "description": "Great lawyer, very helpful",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "1",
+                  "client_id": "1",
+                  "client_name": "John Doe"
+                },
+                {
+                  "id": "2",
+                  "rating": 3.5,
+                  "description": "Good lawyer, but need to improve",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "2",
+                  "client_id": "2",
+                  "client_name": "John Doe"
+                },
+                {
+                  "id": "3",
+                  "rating": 5,
+                  "description": "Excellent lawyer, very professional",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "1",
+                  "client_id": "3",
+                  "client_name": "John Doe"
+                },
+                {
+                  "id": "4",
+                  "rating": 4,
+                  "description": "Very helpful lawyer, highly recommended",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "2",
+                  "client_id": "4",
+                  "client_name": "John Doe"
+                }
+              ]
+            }
           },
           {
             "id": "4",
             "subject": "Family",
-            "media": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+            "media": "",
             "notes": "Need help with family law",
             "status": "On Going",
             "hour": 5,
-            "additionFee": 0,
-            "lawyerId": "2",
-            "clientId": "4"
+            "addition_fee": 0,
+            "lawyer_id": "2",
+            "client_id": "4",
+            "Lawyer": {
+              "id": "1",
+              "client_id": "1",
+              "price_per_hour": 100,
+              "rating": 4.5,
+              "Specialties": [
+                {"name": "Criminal Law"},
+                {"name": "Family Law"}
+              ],
+              "User": {
+                "id": "1",
+                "username": "hotmanparis",
+                "profile_picture":
+                    "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+                "email": "hotman@hotmail.com",
+                "password": "123456",
+                "full_name": "Hotman Paris",
+                "birth_date": "1960-01-01T00:00:00.000",
+                "phone_number": "82343765854",
+                "address": "Jl. Gatot Subroto No. 1",
+                "bio":
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+              },
+              "Reviews": [
+                {
+                  "id": "1",
+                  "rating": 4.5,
+                  "description": "Great lawyer, very helpful",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "1",
+                  "client_id": "1",
+                  "client_name": "John Doe"
+                },
+                {
+                  "id": "2",
+                  "rating": 3.5,
+                  "description": "Good lawyer, but need to improve",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "2",
+                  "client_id": "2",
+                  "client_name": "John Doe"
+                },
+                {
+                  "id": "3",
+                  "rating": 5,
+                  "description": "Excellent lawyer, very professional",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "1",
+                  "client_id": "3",
+                  "client_name": "John Doe"
+                },
+                {
+                  "id": "4",
+                  "rating": 4,
+                  "description": "Very helpful lawyer, highly recommended",
+                  "timestamp": "2024-05-28T00:00:00.000Z",
+                  "lawyer_id": "2",
+                  "client_id": "4",
+                  "client_name": "John Doe"
+                }
+              ]
+            }
           }
         ]
       };
       return CasesResult.fromJson(responseBody);
     } catch (e) {
-      throw Exception('An error occurred: $e');
+      throw Exception('An error occurred while get cases: $e');
     }
   }
 
@@ -285,13 +549,75 @@ class ApiServices {
         "case": {
           "id": "1",
           "subject": "Divorce",
-          "media": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+          "media": "",
           "notes": "Need help with divorce process",
           "status": "On Going",
           "hour": 2,
-          "additionFee": 0,
-          "lawyerId": "1",
-          "clientId": "1"
+          "addition_fee": 0,
+          "lawyer_id": "1",
+          "client_id": "1",
+          "Lawyer": {
+            "id": "1",
+            "client_id": "1",
+            "price_per_hour": 100,
+            "rating": 4.5,
+            "Specialties": [
+              {"name": "Criminal Law"},
+              {"name": "Family Law"}
+            ],
+            "User": {
+              "id": "1",
+              "username": "hotmanparis",
+              "profile_picture":
+                  "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+              "email": "hotman@hotmail.com",
+              "password": "123456",
+              "full_name": "Hotman Paris",
+              "birth_date": "1960-01-01T00:00:00.000",
+              "phone_number": "82343765854",
+              "address": "Jl. Gatot Subroto No. 1",
+              "bio":
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+            },
+            "Reviews": [
+              {
+                "id": "1",
+                "rating": 4.5,
+                "description": "Great lawyer, very helpful",
+                "timestamp": "2024-05-28T00:00:00.000Z",
+                "lawyer_id": "1",
+                "client_id": "1",
+                "client_name": "John Doe"
+              },
+              {
+                "id": "2",
+                "rating": 3.5,
+                "description": "Good lawyer, but need to improve",
+                "timestamp": "2024-05-28T00:00:00.000Z",
+                "lawyer_id": "2",
+                "client_id": "2",
+                "client_name": "John Doe"
+              },
+              {
+                "id": "3",
+                "rating": 5,
+                "description": "Excellent lawyer, very professional",
+                "timestamp": "2024-05-28T00:00:00.000Z",
+                "lawyer_id": "1",
+                "client_id": "3",
+                "client_name": "John Doe"
+              },
+              {
+                "id": "4",
+                "rating": 4,
+                "description": "Very helpful lawyer, highly recommended",
+                "timestamp": "2024-05-28T00:00:00.000Z",
+                "lawyer_id": "2",
+                "client_id": "4",
+                "client_name": "John Doe"
+              }
+            ]
+          }
         }
       };
       return DetailCaseResult.fromJson(responseBody);
@@ -300,155 +626,205 @@ class ApiServices {
     }
   }
 
-  // Future<SearchLawyersResult> getLawyersByKeyword(String keyword) async {
-  //   final response =
-  //       await client!.get(Uri.parse("$baseUrl/lawyers/search/$keyword"));
-  //   if (response.statusCode == 200) {
-  //     return SearchLawyersResult.fromJson(json.decode(response.body));
-  //   } else {
-  //     throw Exception('Failed to search lawyers');
-  //   }
-  // }
-  Future<SearchLawyersResult> getLawyersByKeyword(String keyword) async {
-    try {
-      final responseBody = {
-        "error": false,
-        "founded": 2,
-        "lawyers": [
-          {
-            "id": "1",
-            "clientId": "1",
-            "pricePerHour": 100,
-            "rating": 4.5,
-            "specialities": [
-              {"name": "Criminal Law"},
-              {"name": "Civil Law"},
-            ],
-            "reviews": [
-              {
-                "id": "1",
-                "rating": 4.5,
-                "description": "Great lawyer, very helpful",
-                "timestamp": "2024-05-28T00:00:00.000Z",
-                "lawyerId": "1",
-                "clientId": "1",
-                "clientName": "John Doe"
-              },
-              {
-                "id": "2",
-                "rating": 3.5,
-                "description": "Good lawyer, but need to improve",
-                "timestamp": "2024-05-28T00:00:00.000Z",
-                "lawyerId": "2",
-                "clientId": "2",
-                "clientName": "John Doe"
-              },
-              {
-                "id": "3",
-                "rating": 5,
-                "description": "Excellent lawyer, very professional",
-                "timestamp": "2024-05-28T00:00:00.000Z",
-                "lawyerId": "1",
-                "clientId": "3",
-                "clientName": "John Doe"
-              },
-              {
-                "id": "4",
-                "rating": 4,
-                "description": "Very helpful lawyer, highly recommended",
-                "timestamp": "2024-05-28T00:00:00.000Z",
-                "lawyerId": "2",
-                "clientId": "4",
-                "clientName": "John Doe"
-              }
-            ],
-            "user": {
-              "id": "1",
-              "username": "hotmanparis",
-              "profilePicture":
-                  "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
-              "email": "hotman@hotmail.com",
-              "password": "123456",
-              "fullname": "Hotman Paris",
-              "birthdate": "1960-01-01T00:00:00.000",
-              "phoneNumber": "6282343765854",
-              "address": "Jl. Gatot Subroto No. 1",
-              "bio":
-                  "Hotman was born on 20 October 1959 in Laguboti, a village in Toba Regency, North Sumatra. He was the sixth of 10 children in a Protestant Batak family.[3] His first name was taken from the Batak word hotma, which means 'steady'. His father ran an intercity bus company called Bintang Utara and often had to live away from home in the North Sumatran capital of Medan. His mother remained at Laguboti and encouraged the children to eat healthily, especially fish and papaya leaves, so they would develop high IQs. Eight of the 10 children became university graduates."
-            }
-          },
-          {
-            "id": "3",
-            "clientId": "2",
-            "pricePerHour": 300,
-            "rating": 4.0,
-            "specialities": [
-              {"name": "Criminal Law"},
-              {"name": "Civil Law"},
-              {"name": "Family Law"},
-              {"name": "Corporate Law"},
-            ],
-            "reviews": [
-              {
-                "id": "1",
-                "rating": 4.5,
-                "description": "Great lawyer, very helpful",
-                "timestamp": "2024-05-28T00:00:00.000Z",
-                "lawyerId": "1",
-                "clientId": "1",
-                "clientName": "John Doe"
-              },
-              {
-                "id": "2",
-                "rating": 3.5,
-                "description": "Good lawyer, but need to improve",
-                "timestamp": "2024-05-28T00:00:00.000Z",
-                "lawyerId": "2",
-                "clientId": "2",
-                "clientName": "John Doe"
-              },
-              {
-                "id": "3",
-                "rating": 5,
-                "description": "Excellent lawyer, very professional",
-                "timestamp": "2024-05-28T00:00:00.000Z",
-                "lawyerId": "1",
-                "clientId": "3",
-                "clientName": "John Doe"
-              },
-              {
-                "id": "4",
-                "rating": 4,
-                "description": "Very helpful lawyer, highly recommended",
-                "timestamp": "2024-05-28T00:00:00.000Z",
-                "lawyerId": "2",
-                "clientId": "4",
-                "clientName": "John Doe"
-              }
-            ],
-            "user": {
-              "id": "2",
-              "username": "jokowi",
-              "profilePicture":
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Joko_Widodo_2019_official_portrait.jpg/220px-Joko_Widodo_2019_official_portrait.jpg",
-              "email": "jokowi@ri.co.id",
-              "password": "123456",
-              "fullname": "Joko Widodo",
-              "birthdate": "1961-06-21T00:00:00.000",
-              "phoneNumber": "6282343765854",
-              "address": "Jl. Gatot Subroto No. 1",
-              "bio": "President of Indonesia"
-            }
-          }
-        ]
-      };
-      return SearchLawyersResult.fromJson(responseBody);
-    } catch (e) {
-      throw Exception('An error occurred: $e');
+  Future<LawyersResult> getLawyersByKeyword(String keyword) async {
+    final response = await client!.get(Uri.parse("$baseUrl/lawyers"));
+    if (response.statusCode == 200) {
+      try {
+        final responseBody = json.decode(response.body);
+
+        final List<dynamic> lawyersList =
+            responseBody['lawyers'] as List<dynamic>;
+
+        final filteredLawyers = lawyersList
+            .where((lawyer) =>
+                lawyer['User']['full_name']
+                    .toString()
+                    .toLowerCase()
+                    .contains(keyword.toLowerCase()) ||
+                lawyer['User']['username']
+                    .toString()
+                    .toLowerCase()
+                    .contains(keyword.toLowerCase()))
+            .toList();
+
+        final filteredLawyersMap = {
+          "error": false,
+          "message": "Success",
+          "lawyers": filteredLawyers,
+        };
+
+        return LawyersResult.fromJson(filteredLawyersMap);
+      } catch (e) {
+        throw Exception('An error occurred while search lawyers: $e');
+      }
+    } else {
+      throw Exception('Failed to search lawyers');
     }
   }
 
-  // Future<ReviewResult> getReviewsByLawyerId(String caseId) async {
+  // Future<LawyersResult> getLawyersByKeyword(String keyword) async {
+  //   try {
+  //     final responseBody = {
+  //       "error": false,
+  //       "message": "Success",
+  //       "lawyers": [
+  //         {
+  //           "id": "1",
+  //           "client_id": "1",
+  //           "price_per_hour": 100,
+  //           "rating": 4.5,
+  //           "Specialties": [
+  //             {"name": "Criminal Law"},
+  //             {"name": "Civil Law"}
+  //           ],
+  //           "User": {
+  //             "id": "1",
+  //             "username": "hotmanparis",
+  //             "profile_picture":
+  //                 "https://thumb.viva.co.id/media/frontend/tokoh/2016/10/28/5812f6954260f-hotman-paris_216_287.jpg",
+  //             "email": "hotman@hotmail.com",
+  //             "password": "123456",
+  //             "full_name": "Hotman Paris",
+  //             "birth_date": "1960-01-01T00:00:00.000",
+  //             "phone_number": "82343765854",
+  //             "address": "Jl. Gatot Subroto No. 1",
+  //             "bio":
+  //                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  //           },
+  //           "Reviews": [
+  //             {
+  //               "id": "1",
+  //               "rating": 4.5,
+  //               "description": "Great lawyer, very helpful",
+  //               "timestamp": "2024-05-28T00:00:00.000Z",
+  //               "lawyer_id": "1",
+  //               "client_id": "1",
+  //               "client_name": "John Doe"
+  //             },
+  //             {
+  //               "id": "2",
+  //               "rating": 3.5,
+  //               "description": "Good lawyer, but need to improve",
+  //               "timestamp": "2024-05-28T00:00:00.000Z",
+  //               "lawyer_id": "2",
+  //               "client_id": "2",
+  //               "client_name": "John Doe"
+  //             },
+  //             {
+  //               "id": "3",
+  //               "rating": 5,
+  //               "description": "Excellent lawyer, very professional",
+  //               "timestamp": "2024-05-28T00:00:00.000Z",
+  //               "lawyer_id": "1",
+  //               "client_id": "3",
+  //               "client_name": "John Doe"
+  //             },
+  //             {
+  //               "id": "4",
+  //               "rating": 4,
+  //               "description": "Very helpful lawyer, highly recommended",
+  //               "timestamp": "2024-05-28T00:00:00.000Z",
+  //               "lawyer_id": "2",
+  //               "client_id": "4",
+  //               "client_name": "John Doe"
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           "id": "3",
+  //           "client_id": "2",
+  //           "price_per_hour": 300,
+  //           "rating": 4.0,
+  //           "Specialties": [
+  //             {"name": "Criminal Law"},
+  //             {"name": "Civil Law"},
+  //             {"name": "Family Law"},
+  //             {"name": "Corporate Law"}
+  //           ],
+  //           "User": {
+  //             "id": "2",
+  //             "username": "jokowi",
+  //             "profile_picture":
+  //                 "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Joko_Widodo_2019_official_portrait.jpg/220px-Joko_Widodo_2019_official_portrait.jpg",
+  //             "email": "jokowi@ri.co.id",
+  //             "password": "123456",
+  //             "full_name": "Joko Widodo",
+  //             "birth_date": "1961-06-21T00:00:00.000",
+  //             "phone_number": "82343765854",
+  //             "address": "Jl. Gatot Subroto No. 1",
+  //             "bio": "President of Indonesia"
+  //           },
+  //           "Reviews": [
+  //             {
+  //               "id": "1",
+  //               "rating": 4.5,
+  //               "description": "Great lawyer, very helpful",
+  //               "timestamp": "2024-05-28T00:00:00.000Z",
+  //               "lawyer_id": "1",
+  //               "client_id": "1",
+  //               "client_name": "John Doe"
+  //             },
+  //             {
+  //               "id": "2",
+  //               "rating": 3.5,
+  //               "description": "Good lawyer, but need to improve",
+  //               "timestamp": "2024-05-28T00:00:00.000Z",
+  //               "lawyer_id": "2",
+  //               "client_id": "2",
+  //               "client_name": "John Doe"
+  //             },
+  //             {
+  //               "id": "3",
+  //               "rating": 5,
+  //               "description": "Excellent lawyer, very professional",
+  //               "timestamp": "2024-05-28T00:00:00.000Z",
+  //               "lawyer_id": "1",
+  //               "client_id": "3",
+  //               "client_name": "John Doe"
+  //             },
+  //             {
+  //               "id": "4",
+  //               "rating": 4,
+  //               "description": "Very helpful lawyer, highly recommended",
+  //               "timestamp": "2024-05-28T00:00:00.000Z",
+  //               "lawyer_id": "2",
+  //               "client_id": "4",
+  //               "client_name": "John Doe"
+  //             }
+  //           ]
+  //         }
+  //       ]
+  //     };
+  //     final List<dynamic> lawyersList =
+  //         responseBody['lawyers'] as List<dynamic>;
+
+  //     final filteredLawyers = lawyersList
+  //         .where((lawyer) =>
+  //             lawyer['User']['full_name']
+  //                 .toString()
+  //                 .toLowerCase()
+  //                 .contains(keyword.toLowerCase()) ||
+  //             lawyer['User']['username']
+  //                 .toString()
+  //                 .toLowerCase()
+  //                 .contains(keyword.toLowerCase()))
+  //         .toList();
+
+  //     print(filteredLawyers);
+
+  //     final filteredLawyersMap = {
+  //       "error": false,
+  //       "message": "Success",
+  //       "lawyers": filteredLawyers,
+  //     };
+
+  //     return LawyersResult.fromJson(filteredLawyersMap);
+  //   } catch (e) {
+  //     throw Exception('An error occurred while searching: $e');
+  //   }
+  // }
+
+  // Future<ReviewResult> getReviewsByLawyer_id(String caseId) async {
   //   final response = await client!.get(Uri.parse("$baseUrl/reviews/$caseId"));
   //   if (response.statusCode == 200) {
   //     return ReviewResult.fromJson(json.decode(response.body));
@@ -461,42 +837,42 @@ class ApiServices {
       final responseBody = {
         "error": false,
         "message": "Success",
-        "reviews": [
+        "Reviews": [
           {
             "id": "1",
             "rating": 4.5,
             "description": "Great lawyer, very helpful",
             "timestamp": "2024-05-28T00:00:00.000Z",
-            "lawyerId": "1",
-            "clientId": "1",
-            "clientName": "John Doe"
+            "lawyer_id": "1",
+            "client_id": "1",
+            "client_name": "John Doe"
           },
           {
             "id": "2",
             "rating": 3.5,
             "description": "Good lawyer, but need to improve",
             "timestamp": "2024-05-28T00:00:00.000Z",
-            "lawyerId": "2",
-            "clientId": "2",
-            "clientName": "Jane Doe"
+            "lawyer_id": "2",
+            "client_id": "2",
+            "client_name": "Jane Doe"
           },
           {
             "id": "3",
             "rating": 5,
             "description": "Excellent lawyer, very professional",
             "timestamp": "2024-05-28T00:00:00.000Z",
-            "lawyerId": "1",
-            "clientId": "3",
-            "clientName": "John Doe"
+            "lawyer_id": "1",
+            "client_id": "3",
+            "client_name": "John Doe"
           },
           {
             "id": "4",
             "rating": 4,
             "description": "Very helpful lawyer, highly recommended",
             "timestamp": "2024-05-28T00:00:00.000Z",
-            "lawyerId": "2",
-            "clientId": "4",
-            "clientName": "Jane Doe"
+            "lawyer_id": "2",
+            "client_id": "4",
+            "client_name": "Jane Doe"
           }
         ]
       };
@@ -516,8 +892,8 @@ class ApiServices {
       Uri.parse("$baseUrl/reviews"),
       body: jsonEncode(
         {
-          "lawyerId": lawyerId,
-          "clientId": userId,
+          "lawyer_id": lawyerId,
+          "client_id": userId,
           "rating": rating,
           "description": description,
         },
@@ -532,7 +908,7 @@ class ApiServices {
 
   Future<ReviewsResult> postCase(
     // status by default is "pending"
-    int lawyerId,
+    int lawyer_id,
     int userId,
     String subject,
     String media,
@@ -545,14 +921,14 @@ class ApiServices {
       Uri.parse("$baseUrl/cases"),
       body: jsonEncode(
         {
-          "lawyerId": lawyerId,
-          "clientId": userId,
+          "lawyer_id": lawyer_id,
+          "client_id": userId,
           "subject": subject,
           "media": media,
           "notes": notes,
           "consultationFee": consultationFee,
           "hourlyFee": hourlyFee,
-          "additionFee": additionFee,
+          "addition_fee": additionFee,
         },
       ),
     );
@@ -582,7 +958,7 @@ class ApiServices {
           "notes": notes,
           "consultationFee": consultationFee,
           "hourlyFee": hourlyFee,
-          "additionFee": additionFee,
+          "addition_fee": additionFee,
         },
       ),
     );
@@ -594,28 +970,28 @@ class ApiServices {
   }
 
   Future<ReviewsResult> updateUserById(
-    int clientId,
+    int client_id,
     String username,
-    String profilePicture,
+    String profile_picture,
     // String email, // email cannot be updated
     String password,
-    String fullname,
-    DateTime birthdate,
-    String phoneNumber,
+    String full_name,
+    DateTime birth_date,
+    String phone_number,
     String address,
     String bio,
   ) async {
     final response = await client!.put(
-      Uri.parse("$baseUrl/users/$clientId"),
+      Uri.parse("$baseUrl/users/$client_id"),
       body: jsonEncode(
         {
           "username": username,
-          "profilePicture": profilePicture,
+          "profile_picture": profile_picture,
           // "email": email,
           "password": password,
-          "fullname": fullname,
-          "birthdate": birthdate.toIso8601String(),
-          "phoneNumber": phoneNumber,
+          "full_name": full_name,
+          "birth_date": birth_date.toIso8601String(),
+          "phone_number": phone_number,
           "address": address,
           "bio": bio,
         },
