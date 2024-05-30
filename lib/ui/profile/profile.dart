@@ -41,7 +41,7 @@ class _ProfileState extends State<Profile> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Image.asset("images/lawy.png",
+                    Image.asset("assets/images/lawy.png",
                         width: 160, height: 160, fit: BoxFit.cover),
                     const SizedBox(
                       width: 20,

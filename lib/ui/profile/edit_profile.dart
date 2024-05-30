@@ -41,203 +41,205 @@ class _EditProfileState extends State<EditProfile> {
             icon: const Icon(Icons.arrow_back),
           ),
         ),
-        body: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Image.asset("images/lawy.png",
-                        width: 160, height: 160, fit: BoxFit.cover),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text("Profile",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            )),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        Text("Name",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            )),
-                        SizedBox(height: 3),
-                        SizedBox(
-                            width: MediaQuery.of(context).size.width - 240,
-                            child: Container(
-                              padding: const EdgeInsets.fromLTRB(5, 5, 10, 5),
-                              margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(5))),
-                              child: TextField(
-                                controller: _nameController,
-                                textAlignVertical: TextAlignVertical.center,
-                                style: const TextStyle(
-                                    color: Colors.black, fontSize: 12),
-                                decoration: null,
-                                onChanged: (text) {
-                                  setState(() {
-                                    name = text;
-                                  });
-                                },
-                              ),
-                            )),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        Text("Birth Date",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            )),
-                        SizedBox(height: 3),
-                        SizedBox(
-                            width: MediaQuery.of(context).size.width - 240,
-                            child: Container(
-                              padding: const EdgeInsets.fromLTRB(5, 5, 10, 5),
-                              margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(5))),
-                              child: TextField(
-                                controller: _dateController,
-                                textAlignVertical: TextAlignVertical.center,
-                                style: const TextStyle(
-                                    color: Colors.black, fontSize: 12),
-                                decoration: null,
-                                onTap: () {
-                                  _selectDate(context);
-                                },
-                              ),
-                            )),
-                      ],
-                    )
-                  ],
-                ),
-                const SizedBox(height: 12),
-                const Text("Phone/Whatsapp",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    )),
-                const SizedBox(height: 3),
-                SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Container(
-                      padding: const EdgeInsets.fromLTRB(5, 5, 10, 5),
-                      margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5))),
-                      child: TextField(
-                        controller: _phoneController,
-                        textAlignVertical: TextAlignVertical.center,
-                        style:
-                            const TextStyle(color: Colors.black, fontSize: 12),
-                        decoration: null,
-                        onChanged: (text) {
-                          setState(() {
-                            phone = text;
-                          });
-                        },
+        body: ListView(children: <Widget>[
+          Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Image.asset("assets/images/lawy.png",
+                          width: 160, height: 160, fit: BoxFit.cover),
+                      const SizedBox(
+                        width: 20,
                       ),
-                    )),
-                const SizedBox(
-                  height: 12,
-                ),
-                const Text("Address",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    )),
-                const SizedBox(height: 3),
-                SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Container(
-                      padding: const EdgeInsets.fromLTRB(5, 5, 10, 5),
-                      margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5))),
-                      child: TextField(
-                        controller: _addressController,
-                        textAlignVertical: TextAlignVertical.center,
-                        style:
-                            const TextStyle(color: Colors.black, fontSize: 12),
-                        decoration: null,
-                        onChanged: (text) {
-                          setState(() {
-                            address = text;
-                          });
-                        },
-                      ),
-                    )),
-                const SizedBox(
-                  height: 12,
-                ),
-                const Text("Bio",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    )),
-                const SizedBox(height: 3),
-                SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Container(
-                      padding: const EdgeInsets.fromLTRB(5, 5, 10, 5),
-                      margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5))),
-                      child: TextField(
-                        maxLines: 10,
-                        controller: _bioController,
-                        textAlignVertical: TextAlignVertical.center,
-                        style:
-                            const TextStyle(color: Colors.black, fontSize: 12),
-                        decoration: null,
-                        onChanged: (text) {
-                          setState(() {
-                            bio = text;
-                          });
-                        },
-                      ),
-                    )),
-                const SizedBox(height: 12),
-                SizedBox(
-                    width: 440,
-                    height: 40,
-                    child: Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 50),
-                        child: OutlinedButton(
-                          onPressed: () {},
-                          child: const Text("Save",
-                              style: TextStyle(color: Color(0xff587DBD))),
-                          style: OutlinedButton.styleFrom(
-                            side: BorderSide(
-                                width: 1.0, color: Color(0xff587DBD)),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text("Profile",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              )),
+                          SizedBox(
+                            height: 12,
                           ),
-                        )))
-              ],
-            )));
+                          Text("Name",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              )),
+                          SizedBox(height: 3),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width - 240,
+                              child: Container(
+                                padding: const EdgeInsets.fromLTRB(5, 5, 10, 5),
+                                margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5))),
+                                child: TextField(
+                                  controller: _nameController,
+                                  textAlignVertical: TextAlignVertical.center,
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 12),
+                                  decoration: null,
+                                  onChanged: (text) {
+                                    setState(() {
+                                      name = text;
+                                    });
+                                  },
+                                ),
+                              )),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          Text("Birth Date",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              )),
+                          SizedBox(height: 3),
+                          SizedBox(
+                              width: MediaQuery.of(context).size.width - 240,
+                              child: Container(
+                                padding: const EdgeInsets.fromLTRB(5, 5, 10, 5),
+                                margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.grey),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5))),
+                                child: TextField(
+                                  controller: _dateController,
+                                  textAlignVertical: TextAlignVertical.center,
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 12),
+                                  decoration: null,
+                                  onTap: () {
+                                    _selectDate(context);
+                                  },
+                                ),
+                              )),
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  const Text("Phone/Whatsapp",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      )),
+                  const SizedBox(height: 3),
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(5, 5, 10, 5),
+                        margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5))),
+                        child: TextField(
+                          controller: _phoneController,
+                          textAlignVertical: TextAlignVertical.center,
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: 12),
+                          decoration: null,
+                          onChanged: (text) {
+                            setState(() {
+                              phone = text;
+                            });
+                          },
+                        ),
+                      )),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  const Text("Address",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      )),
+                  const SizedBox(height: 3),
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(5, 5, 10, 5),
+                        margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5))),
+                        child: TextField(
+                          controller: _addressController,
+                          textAlignVertical: TextAlignVertical.center,
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: 12),
+                          decoration: null,
+                          onChanged: (text) {
+                            setState(() {
+                              address = text;
+                            });
+                          },
+                        ),
+                      )),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  const Text("Bio",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      )),
+                  const SizedBox(height: 3),
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(5, 5, 10, 5),
+                        margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5))),
+                        child: TextField(
+                          maxLines: 10,
+                          controller: _bioController,
+                          textAlignVertical: TextAlignVertical.center,
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: 12),
+                          decoration: null,
+                          onChanged: (text) {
+                            setState(() {
+                              bio = text;
+                            });
+                          },
+                        ),
+                      )),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                      width: 440,
+                      height: 40,
+                      child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 0, horizontal: 50),
+                          child: OutlinedButton(
+                            onPressed: () {},
+                            child: const Text("Save",
+                                style: TextStyle(color: Color(0xff587DBD))),
+                            style: OutlinedButton.styleFrom(
+                              side: BorderSide(
+                                  width: 1.0, color: Color(0xff587DBD)),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                          )))
+                ],
+              ))
+        ]));
   }
 
   _selectDate(BuildContext context) async {
