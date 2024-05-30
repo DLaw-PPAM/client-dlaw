@@ -41,11 +41,9 @@ class _SearchPageState extends State<SearchPage> {
               readOnly: false,
               autoFocus: true,
               onChanged: (text) {
-                if (text.isNotEmpty) {
-                  setState(() {
-                    state.searchLawyers(text);
-                  });
-                }
+                setState(() {
+                  state.searchLawyers(text);
+                });
               },
             ),
           );

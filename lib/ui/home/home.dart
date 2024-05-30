@@ -1,7 +1,7 @@
+import 'package:client_dlaw/ui/cases/upload_case.dart';
+import 'package:client_dlaw/ui/notifications/notifications.dart';
 import 'package:client_dlaw/widgets/home_card.dart';
 import 'package:flutter/material.dart';
-import 'package:client_dlaw/ui/profile/profile.dart';
-import 'package:client_dlaw/ui/home_page.dart';
 import 'package:client_dlaw/ui/search_page.dart';
 
 class Home extends StatefulWidget {
@@ -16,11 +16,11 @@ class _HomeState extends State<Home> {
   // @override
 
   void onProfileButtonPressed() {
-    Navigator.pushNamed(context, Profile.routeName);
+    Navigator.pushNamed(context, UploadCase.routeName);
   }
 
   void onNotificationButtonPressed() {
-    Navigator.pushNamed(context, HomePage.routeName);
+    Navigator.pushNamed(context, Notifications.routeName);
   }
 
   void onSearchButtonPressed() {

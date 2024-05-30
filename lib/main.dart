@@ -12,6 +12,10 @@ import 'package:client_dlaw/ui/lawyer/contact_page.dart';
 import 'package:client_dlaw/ui/profile/profile.dart';
 import 'package:client_dlaw/ui/home_page.dart';
 import 'package:client_dlaw/ui/lawyer/lawyer_detail_page.dart';
+import 'package:client_dlaw/ui/cases/upload_case.dart';
+import 'package:client_dlaw/ui/notifications/notifications.dart';
+import 'package:client_dlaw/ui/profile/edit_profile.dart';
+import 'package:client_dlaw/ui/search_page.dart';
 import 'package:client_dlaw/ui/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -76,6 +80,10 @@ class MyApp extends StatelessWidget {
                 phoneNumber:
                     ModalRoute.of(context)?.settings.arguments as String,
               ),
+          SearchPage.routeName: (context) => const SearchPage(),
+          EditProfile.routeName: (context) => const EditProfile(),
+          Notifications.routeName: (context) => const Notifications(),
+          UploadCase.routeName: (context) => const UploadCase(),
         },
       ),
     );

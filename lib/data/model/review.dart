@@ -23,7 +23,7 @@ class Review {
     id = json['id'];
     rating = json['rating'];
     description = json['description'];
-    timestamp = DateTime.parse(json['timestamp']);
+    timestamp = DateTime.parse(json['created_at']);
     lawyerId = json['lawyer_id'];
     clientId = json['client_id'];
     clientName = json['client_name'];

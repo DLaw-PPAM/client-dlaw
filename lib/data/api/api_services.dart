@@ -635,7 +635,7 @@ class ApiServices {
         final List<dynamic> lawyersList =
             responseBody['lawyers'] as List<dynamic>;
 
-        final filteredLawyers = lawyersList
+        final filteredLawyers = lawyersList 
             .where((lawyer) =>
                 lawyer['User']['full_name']
                     .toString()
@@ -650,7 +650,7 @@ class ApiServices {
         final filteredLawyersMap = {
           "error": false,
           "message": "Success",
-          "lawyers": filteredLawyers,
+          "lawyers": keyword.isEmpty ? lawyersList : filteredLawyers,
         };
 
         return LawyersResult.fromJson(filteredLawyersMap);
@@ -885,7 +885,7 @@ class ApiServices {
   Future<ReviewsResult> postReview({
     required lawyerId,
     required userId,
-    required double rating,
+    required num rating,
     required String description,
   }) async {
     final response = await client!.post(

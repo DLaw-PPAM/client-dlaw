@@ -5,6 +5,7 @@ import 'package:client_dlaw/provider/detail_lawyer_provider.dart';
 import 'package:client_dlaw/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class DialogAddReview extends StatefulWidget {
@@ -21,11 +22,13 @@ class DialogAddReview extends StatefulWidget {
 
 class _DialogAddReviewState extends State<DialogAddReview> {
   final nameController = TextEditingController();
+  final ratingController = TextEditingController();
   final reviewController = TextEditingController();
 
   final String title = "Add Review";
-  final String nameHint = 'Type name here';
-  final String reviewHint = 'Type review here';
+  final String nameHint = 'Your name';
+  final String ratingHint = 'Your rating (1-5)';
+  final String reviewHint = 'Your review';
 
   Future<void> _onYesPressed(BuildContext context) async {
     // var errorResponse =
@@ -109,6 +112,44 @@ class _DialogAddReviewState extends State<DialogAddReview> {
               borderRadius: BorderRadius.circular(15),
             ),
             child: TextField(
+              controller: ratingController,
+              textAlignVertical: TextAlignVertical.center,
+              cursorColor: black,
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[1-5]')),
+                LengthLimitingTextInputFormatter(1)
+              ],
+              decoration: InputDecoration(
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 9),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide.none,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(color: black),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide(color: grey),
+                ),
+                hintText: ratingHint,
+                hintStyle: const TextStyle(color: grey),
+              ),
+              style: TextStyle(
+                color: black,
+              ),
+            ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: lightGrey,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: TextField(
               controller: reviewController,
               cursorColor: black,
               textAlignVertical: TextAlignVertical.top,
@@ -169,6 +210,19 @@ class _DialogAddReviewState extends State<DialogAddReview> {
             controller: nameController,
             placeholder: nameHint,
             textAlignVertical: TextAlignVertical.center,
+            maxLines: 1,
+            placeholderStyle: const TextStyle(color: grey),
+          ),
+          const SizedBox(height: 12),
+          CupertinoTextField(
+            controller: ratingController,
+            placeholder: ratingHint,
+            textAlignVertical: TextAlignVertical.center,
+            keyboardType: TextInputType.number,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[1-5]')),
+              LengthLimitingTextInputFormatter(1)
+            ],
             maxLines: 1,
             placeholderStyle: const TextStyle(color: grey),
           ),

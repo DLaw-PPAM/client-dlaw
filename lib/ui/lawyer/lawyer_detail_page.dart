@@ -102,7 +102,7 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
                     const SizedBox(width: 4),
                     Expanded(
                       child: Text(
-                        '${lawyer.user.address ?? ''}, ${lawyer.user.address ?? ''}',
+                        '${lawyer.user.address ?? ''}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
