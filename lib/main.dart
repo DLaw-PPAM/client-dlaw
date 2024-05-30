@@ -5,6 +5,7 @@ import 'package:client_dlaw/provider/lawyers_provider.dart';
 import 'package:client_dlaw/provider/search_lawyer_provider.dart';
 import 'package:client_dlaw/ui/auth/login_screen.dart';
 import 'package:client_dlaw/ui/auth/register_screen.dart';
+import 'package:client_dlaw/ui/cases/upload_case.dart';
 import 'package:client_dlaw/ui/notifications/notifications.dart';
 import 'package:client_dlaw/ui/profile/edit_profile.dart';
 import 'package:client_dlaw/ui/profile/profile.dart';
@@ -65,6 +66,7 @@ class MyApp extends StatelessWidget {
           SearchPage.routeName: (context) => const SearchPage(),
           EditProfile.routeName: (context) => const EditProfile(),
           Notifications.routeName: (context) => const Notifications(),
+          UploadCase.routeName: (context) => const UploadCase(),
         },
       ),
     );

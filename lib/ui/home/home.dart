@@ -1,3 +1,4 @@
+import 'package:client_dlaw/ui/cases/upload_case.dart';
 import 'package:client_dlaw/ui/notifications/notifications.dart';
 import 'package:client_dlaw/widgets/home_card.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _HomeState extends State<Home> {
   // @override
 
   void onProfileButtonPressed() {
-    Navigator.pushNamed(context, Profile.routeName);
+    Navigator.pushNamed(context, UploadCase.routeName);
   }
 
   void onNotificationButtonPressed() {
