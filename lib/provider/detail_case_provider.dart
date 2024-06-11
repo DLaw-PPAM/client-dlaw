@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:client_dlaw/data/api/api_services.dart';
@@ -67,35 +66,6 @@ class DetailCaseProvider extends ChangeNotifier {
       _state = ResultState.error;
       notifyListeners();
       return _message = 'No Connection';
-    } catch (e) {
-      _state = ResultState.error;
-      notifyListeners();
-      return _message = e.toString();
-    }
-  }
-
-  Future<dynamic> postReview({
-    required int lawyerId,
-    required int userId,
-    required double rating,
-    required String description,
-  }) async {
-    try {
-      final response = await apiServices.postReview(
-        lawyerId: lawyerId,
-        userId: userId,
-        rating: rating,
-        description: description,
-      );
-      if (response.error) {
-        _state = ResultState.noData;
-        notifyListeners();
-        return _message = 'Empty Data';
-      } else {
-        _state = ResultState.hasData;
-        notifyListeners();
-        return _message = response.message;
-      }
     } catch (e) {
       _state = ResultState.error;
       notifyListeners();

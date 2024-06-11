@@ -27,10 +27,14 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -66,8 +70,7 @@ class MyApp extends StatelessWidget {
           HomePage.routeName: (context) => const HomePage(),
           CasePage.routeName: (context) => const CasePage(),
           CaseDetailPage.routeName: (context) => CaseDetailPage(
-                kasus:
-                    ModalRoute.of(context)?.settings.arguments as Case,
+                kasus: ModalRoute.of(context)?.settings.arguments as Case,
               ),
           LawyerDetailPage.routeName: (context) => LawyerDetailPage(
                 lawyer:

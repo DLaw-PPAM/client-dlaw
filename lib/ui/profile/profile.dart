@@ -1,3 +1,4 @@
+import 'package:client_dlaw/common/navigation.dart';
 import 'package:client_dlaw/ui/profile/edit_profile.dart';
 import 'package:flutter/material.dart';
 
@@ -130,7 +131,9 @@ class _ProfileState extends State<Profile> {
                         margin: const EdgeInsets.symmetric(
                             vertical: 0, horizontal: 50),
                         child: OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigation.back();
+                          },
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(
                                 width: 1.0, color: Color(0xff587DBD)),

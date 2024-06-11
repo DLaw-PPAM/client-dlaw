@@ -1,8 +1,8 @@
+import 'package:client_dlaw/common/navigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:io';
-import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -199,7 +199,9 @@ class _UploadCaseState extends State<UploadCase> {
                           margin: const EdgeInsets.symmetric(
                               vertical: 0, horizontal: 50),
                           child: OutlinedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigation.back();
+                            },
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(
                                   width: 1.0, color: Color(0xff587DBD)),

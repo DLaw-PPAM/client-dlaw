@@ -6,4 +6,4 @@ part 'cases_result.dart';
 part 'detail_case_result.dart';
 part 'review_result.dart';
 part 'detail_user_result.dart';
-
+part 'post_review_result.dart';

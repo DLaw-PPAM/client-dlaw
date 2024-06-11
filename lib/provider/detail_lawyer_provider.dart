@@ -13,13 +13,13 @@ class DetailLawyerProvider extends ChangeNotifier {
     _fetchDetailLawyer(id);
   }
 
-  late DetailLawyerResult _detailLawyerResult;
+  late DetailLawyerResult _detailLResult;
   late ResultState _state;
   String _message = '';
 
   String get message => _message;
 
-  DetailLawyerResult get result => _detailLawyerResult;
+  DetailLawyerResult get result => _detailLResult;
 
   ResultState get state => _state;
 
@@ -35,7 +35,7 @@ class DetailLawyerProvider extends ChangeNotifier {
       } else {
         _state = ResultState.hasData;
         notifyListeners();
-        return _detailLawyerResult = response;
+        return _detailLResult = response;
       }
     } on SocketException {
       _state = ResultState.error;
@@ -43,46 +43,23 @@ class DetailLawyerProvider extends ChangeNotifier {
       return _message = 'No Connection';
     } catch (e) {
       _state = ResultState.error;
-      notifyListeners();
-      return _message = e.toString();
-    }
-  }
-
-  Future<dynamic> _fetchReviewsByLawyerId(caseId) async {
-    try {
-      _state = ResultState.loading;
-      notifyListeners();
-      final response = await apiServices.getReviewsByLawyerId(caseId);
-      if (response.error) {
-        _state = ResultState.noData;
-        notifyListeners();
-        return _message = 'Empty Data';
-      } else {
-        _state = ResultState.hasData;
-        notifyListeners();
-        return _message = response.message;
-      }
-    } on SocketException {
-      _state = ResultState.error;
-      notifyListeners();
-      return _message = 'No Connection';
-    } catch (e) {
-      _state = ResultState.error;
-      notifyListeners();
+      // notifyListeners();
       return _message = e.toString();
     }
   }
 
   Future<dynamic> postReview({
-    required int lawyerId,
-    required int userId,
-    required double rating,
+    required String lawyerId,
+    required String userId,
+    required String clientName,
+    required int rating,
     required String description,
   }) async {
     try {
       final response = await apiServices.postReview(
         lawyerId: lawyerId,
         userId: userId,
+        clientName: clientName,
         rating: rating,
         description: description,
       );

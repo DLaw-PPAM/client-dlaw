@@ -1,6 +1,4 @@
-import 'package:client_dlaw/common/navigation.dart';
 import 'package:client_dlaw/provider/case_provider.dart';
-import 'package:client_dlaw/ui/search_page.dart';
 import 'package:client_dlaw/utils/result_state.dart';
 import 'package:client_dlaw/widgets/card_case.dart';
 import 'package:client_dlaw/widgets/platform_widget.dart';
@@ -55,18 +53,6 @@ class CasePage extends StatelessWidget {
 
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: null,
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () {}, icon: const Icon(Icons.person_2_outlined)),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_none_outlined),
-          )
-        ],
-      ),
       body: SafeArea(
         child: Expanded(
           child: _buildList(),
@@ -77,23 +63,7 @@ class CasePage extends StatelessWidget {
 
   Widget _buildIos(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        transitionBetweenRoutes: false,
-        border: const Border(bottom: BorderSide(color: Colors.transparent)),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        leading: Row(
-          children: [
-            CupertinoNavigationBarBackButton(
-              color: Theme.of(context).primaryColor,
-              onPressed: () => Navigation.back(),
-            ),
-            Text(
-              SearchPage.searchTitle,
-              style: Theme.of(context).textTheme.headline6,
-            ),
-          ],
-        ),
-      ),
+      
       child: SafeArea(
         child: Expanded(
           child: _buildList(),

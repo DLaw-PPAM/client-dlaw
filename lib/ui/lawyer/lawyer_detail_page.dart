@@ -193,14 +193,17 @@ class _LawyerDetailPageState extends State<LawyerDetailPage> {
                 if (lawyer.reviews != null) _buildListReview(lawyer.reviews!),
                 const SizedBox(height: 8),
                 TextButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return DialogAddReview(
-                            id: widget.lawyer.id,
-                          );
-                        });
+                  onPressed: () async {
+                    bool? reviewAdded = await showDialog(
+                      context: context,
+                      builder: (context) {
+                        return DialogAddReview(id: widget.lawyer.id);
+                      },
+                    );
+                    if (reviewAdded == true) {
+                      context.read<DetailLawyerProvider>().apiServices
+                          .getDetailLawyer(widget.lawyer.id);
+                    }
                   },
                   child: const Text(
                     'Berikan Review',

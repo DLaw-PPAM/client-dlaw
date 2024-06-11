@@ -1,4 +1,3 @@
-import 'package:client_dlaw/common/navigation.dart';
 import 'package:client_dlaw/provider/search_lawyer_provider.dart';
 import 'package:client_dlaw/ui/auth/login_screen.dart';
 import 'package:client_dlaw/ui/home/home.dart';
@@ -72,16 +71,12 @@ class _SearchPageState extends State<SearchPage> {
           } else if (state.state == ResultState.noData) {
             return Padding(
               padding: const EdgeInsets.only(top: 16),
-              child: Material(
-                child: Text(state.message),
-              ),
+              child: Text(state.message),
             );
           } else if (state.state == ResultState.error) {
             return Padding(
               padding: const EdgeInsets.only(top: 16),
-              child: Material(
-                child: Text(state.message),
-              ),
+              child: Text(state.message),
             );
           } else {
             return const Center(child: Text(''));
@@ -93,23 +88,6 @@ class _SearchPageState extends State<SearchPage> {
 
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: null,
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () {
-                onProfileButtonPressed();
-              },
-              icon: const Icon(Icons.person_2_outlined)),
-          IconButton(
-            onPressed: () {
-              onNotificationButtonPressed();
-            },
-            icon: const Icon(Icons.notifications_none_outlined),
-          )
-        ],
-      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -126,23 +104,6 @@ class _SearchPageState extends State<SearchPage> {
 
   Widget _buildIos(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        transitionBetweenRoutes: false,
-        border: const Border(bottom: BorderSide(color: Colors.transparent)),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        leading: Row(
-          children: [
-            CupertinoNavigationBarBackButton(
-              color: Theme.of(context).primaryColor,
-              onPressed: () => Navigation.back(),
-            ),
-            Text(
-              SearchPage.searchTitle,
-              style: Theme.of(context).textTheme.headline6,
-            ),
-          ],
-        ),
-      ),
       child: SafeArea(
         child: Column(
           children: [

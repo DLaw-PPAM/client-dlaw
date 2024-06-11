@@ -1,20 +1,90 @@
 import 'dart:convert';
+import 'package:client_dlaw/data/model/models.dart';
+import 'package:client_dlaw/data/response/login_result.dart';
+import 'package:client_dlaw/data/response/register_result.dart';
 import 'package:client_dlaw/data/response/responses.dart';
-import 'package:http/http.dart' show Client;
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class ApiServices {
-  final String baseUrl = "http://127.0.0.1:8080/api/v1";
+  final http.Client client;
 
-  String get urlImage => "$baseUrl/images/";
+  ApiServices({http.Client? client}) : client = client ?? http.Client();
 
-  Client? client;
+  final String baseUrl =
+      "https://dlaw-be-golang-production.up.railway.app/api/v1";
 
-  ApiServices({this.client}) {
-    client ??= Client();
+  Future<RegisterResult> register(
+    String fullname,
+    String email,
+    String password,
+    DateTime birthdate,
+    String username,
+  ) async {
+    final response = await http.post(
+      Uri.parse('${baseUrl}/users/register'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      body: jsonEncode(<String, String>{
+        'full_name': fullname,
+        'email': email,
+        'password': password,
+        'birth_date': birthdate.toIso8601String(),
+        'username': username,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      final body = {
+        "error": false,
+        "message": "Success",
+      };
+
+      return RegisterResult.fromJson(body);
+    } else {
+      debugPrint(response.body);
+      throw Exception('Email is already taken');
+    }
+  }
+
+  Future<LoginResult> login(
+    String email,
+    String password,
+  ) async {
+    final response = await client.post(
+      Uri.parse('${baseUrl}/users/login'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=utf-8',
+      },
+      body: jsonEncode(<String, String>{
+        'email': email,
+        'password': password,
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      final responseBody = json.decode(response.body);
+
+      final token = responseBody['token'];
+      final userId = responseBody['user_id'];
+
+      final body = {
+        "error": false,
+        "message": "Success",
+        "token": token,
+        "user_id": userId,
+      };
+
+      return LoginResult.fromJson(body);
+    } else {
+      debugPrint(response.body);
+      throw Exception('Invalid Email or Password');
+    }
   }
 
   Future<LawyersResult> getLawyers() async {
-    final response = await client!.get(Uri.parse("$baseUrl/lawyers"));
+    final response = await client.get(Uri.parse("$baseUrl/lawyers"));
     if (response.statusCode == 200) {
       return LawyersResult.fromJson(json.decode(response.body));
     } else {
@@ -85,8 +155,7 @@ class ApiServices {
   // }
 
   Future<DetailLawyerResult> getDetailLawyer(String lawyer_id) async {
-    final response =
-        await client!.get(Uri.parse("$baseUrl/lawyers/$lawyer_id"));
+    final response = await client.get(Uri.parse("$baseUrl/lawyers/$lawyer_id"));
     if (response.statusCode == 200) {
       try {
         final responseBody = json.decode(response.body);
@@ -627,7 +696,7 @@ class ApiServices {
   }
 
   Future<LawyersResult> getLawyersByKeyword(String keyword) async {
-    final response = await client!.get(Uri.parse("$baseUrl/lawyers"));
+    final response = await client.get(Uri.parse("$baseUrl/lawyers"));
     if (response.statusCode == 200) {
       try {
         final responseBody = json.decode(response.body);
@@ -635,7 +704,7 @@ class ApiServices {
         final List<dynamic> lawyersList =
             responseBody['lawyers'] as List<dynamic>;
 
-        final filteredLawyers = lawyersList 
+        final filteredLawyers = lawyersList
             .where((lawyer) =>
                 lawyer['User']['full_name']
                     .toString()
@@ -882,28 +951,47 @@ class ApiServices {
     }
   }
 
-  Future<ReviewsResult> postReview({
-    required lawyerId,
-    required userId,
-    required num rating,
+  Future<PostReviewsResult> postReview({
+    required String lawyerId,
+    required String userId,
+    required String clientName,
+    required int rating,
     required String description,
   }) async {
-    final response = await client!.post(
-      Uri.parse("$baseUrl/reviews"),
-      body: jsonEncode(
-        {
-          "lawyer_id": lawyerId,
-          "client_id": userId,
-          "rating": rating,
-          "description": description,
-        },
-      ),
+    final jsonBody = {
+      "rating": rating,
+      "description": description,
+      "lawyer_id": lawyerId,
+      "client_id": userId,
+      "client_name": clientName,
+    };
+
+    final response = await client.post(
+      Uri.parse(
+          "https://dlaw-be-golang-production.up.railway.app/api/v1/lawyers/add/review"),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(jsonBody),
     );
-    if (response.statusCode == 200) {
-      return ReviewsResult.fromJson(json.decode(response.body));
+
+    if (response.statusCode == 201) {
+      
+      final review = Review.fromJson(json.decode(response.body));
+
+      final responseBody = {
+        "error": false,
+        "message": "Success",
+        "review": review,
+      };
+      
+      return PostReviewsResult.fromJson(responseBody);
+      
     } else {
       throw Exception('Failed to post review');
     }
+
+    // Navigation.back();
   }
 
   Future<ReviewsResult> postCase(
@@ -917,7 +1005,7 @@ class ApiServices {
     double hourlyFee,
     double additionFee,
   ) async {
-    final response = await client!.post(
+    final response = await client.post(
       Uri.parse("$baseUrl/cases"),
       body: jsonEncode(
         {
@@ -949,7 +1037,7 @@ class ApiServices {
     double hourlyFee,
     double additionFee,
   ) async {
-    final response = await client!.put(
+    final response = await client.put(
       Uri.parse("$baseUrl/cases/$caseId"),
       body: jsonEncode(
         {
@@ -981,7 +1069,7 @@ class ApiServices {
     String address,
     String bio,
   ) async {
-    final response = await client!.put(
+    final response = await client.put(
       Uri.parse("$baseUrl/users/$client_id"),
       body: jsonEncode(
         {

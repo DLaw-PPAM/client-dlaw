@@ -1,3 +1,4 @@
+import 'package:client_dlaw/common/navigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -226,7 +227,9 @@ class _EditProfileState extends State<EditProfile> {
                           margin: const EdgeInsets.symmetric(
                               vertical: 0, horizontal: 50),
                           child: OutlinedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigation.back();
+                            },
                             child: const Text("Save",
                                 style: TextStyle(color: Color(0xff587DBD))),
                             style: OutlinedButton.styleFrom(

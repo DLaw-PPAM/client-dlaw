@@ -31,35 +31,57 @@ class _DialogAddReviewState extends State<DialogAddReview> {
   final String reviewHint = 'Your review';
 
   Future<void> _onYesPressed(BuildContext context) async {
-    // var errorResponse =
-    //     await Provider.of<DetailLawyerProvider>(context, listen: false)
-    //         .postReview(
-
-    // );
-    var errorResponse = null;
-    Navigation.back();
-    if (errorResponse != null) {
+    if (nameController.text.isEmpty ||
+        ratingController.text.isEmpty ||
+        reviewController.text.isEmpty) {
       showDialog(
-          context: context,
-          builder: (context) {
-            return CupertinoAlertDialog(
-              title: Text(errorResponse),
-              actions: [
-                CupertinoDialogAction(
-                  child: Text(
-                    'Ok',
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
-                  onPressed: () {
-                    Navigation.back();
-                  },
-                ),
-              ],
-            );
-          });
-    } else {
-      Navigation.back();
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            title: Text('Validation Error'),
+            content: Text('All fields are required.'),
+            actions: [
+              CupertinoDialogAction(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigation.back();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return;
     }
+
+    final provider = Provider.of<DetailLawyerProvider>(context, listen: false);
+    await provider.postReview(
+      lawyerId: widget.id,
+      userId: '0eb320ff-1b01-44cb-be87-6bc686bc2623',
+      clientName: nameController.text,
+      rating: int.parse(ratingController.text),
+      description: reviewController.text,
+    );
+
+    Navigation.back();
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return CupertinoAlertDialog(
+          title: Text('Success'),
+          content: Text('Review has been added.'),
+          actions: [
+            CupertinoDialogAction(
+              child: Text('OK'),
+              onPressed: () {
+                Navigation.back();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _onNoPressed() {
@@ -183,18 +205,18 @@ class _DialogAddReviewState extends State<DialogAddReview> {
         TextButton(
           child: Text(
             'Yes',
-            style: Theme.of(context).textTheme.button,
+            style: Theme.of(context).textTheme.labelLarge,
           ),
           onPressed: () {
             _onYesPressed(context);
           },
         ),
         TextButton(
+          onPressed: _onNoPressed,
           child: Text(
             'No',
-            style: Theme.of(context).textTheme.button,
+            style: Theme.of(context).textTheme.labelLarge,
           ),
-          onPressed: _onNoPressed,
         ),
       ],
     );
@@ -254,6 +276,7 @@ class _DialogAddReviewState extends State<DialogAddReview> {
   @override
   void dispose() {
     nameController.dispose();
+    ratingController.dispose();
     reviewController.dispose();
     super.dispose();
   }
